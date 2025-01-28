@@ -14,7 +14,6 @@ import {
 import { menuOptions } from "@/lib/constant"
 import clsx from "clsx"
 import { Separator } from '@/components/ui/separator'
-import { ModeToggle } from "../global/mode-toggle"
 import { motion } from "framer-motion"
 
 type Props = {}
@@ -59,9 +58,6 @@ const MenuOptions = (props: Props) => {
             )
           })}
         </div>
-      </div>
-      <div className="flex items-center justify-center flex-col gap-4">
-        <ModeToggle />
       </div>
     </nav>
   )
