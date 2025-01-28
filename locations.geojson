@@ -1,0 +1,1084 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Andheri East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.853675,
+          19.117342
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Andheri West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.837674,
+          19.119816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Mira Road East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.871645,
+          19.269497
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Chembur, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.900638,
+          19.069359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Goregaon East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.85437,
+          19.169555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Powai, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.907137,
+          19.118178
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Nerul (Navi Mumbai)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.01238,
+          19.034545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Malad West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.842121,
+          19.183317
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Thane West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.017985,
+          19.206474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Naupada, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.839897,
+          19.057942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Dombivli, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.089195,
+          19.217281
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Hiranandani Estate, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.982302,
+          19.25472
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Airoli, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.996748,
+          19.15848
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kopar Khairane (Navi Mumbai)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.998761,
+          19.104737
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Byculla, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.832834,
+          18.97507
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Parel, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.843598,
+          19.001995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kharghar (Navi Mumbai)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.073785,
+          19.05297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kandivali East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.864233,
+          19.208833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Bandra West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.829527,
+          19.059564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Vashi, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.991991,
+          19.071986
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Sion, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.870884,
+          19.039009
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Borivali East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.863288,
+          19.227571
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Lower Parel, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.829556,
+          19.002104
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Bhandup West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.935325,
+          19.145333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Virar, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.82609,
+          18.930697
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kandivali West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.843377,
+          19.208984
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Santacruz East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.869247,
+          19.073816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Borivali West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.847878,
+          19.22855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Vasai, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.008476,
+          19.090466
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Goregaon West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.841081,
+          19.163204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kalyan West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.838709,
+          18.99505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Nalasopara, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.826337,
+          18.937456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Panvel, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.144878,
+          18.984235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Ghatkopar East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.913319,
+          19.083008
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Bandra East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.849745,
+          19.060624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Dadar West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.838586,
+          19.022771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kamothe, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.091967,
+          19.018987
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Palava, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.878723,
+          19.077793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Colaba, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.825194,
+          18.915073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Vile Parle West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.839352,
+          19.103925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Wadala, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.8562,
+          19.014793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Badlapur, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.54537,
+          20.182452
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Tardeo, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.818665,
+          18.972625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kurla West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.875219,
+          19.069151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Vile Parle East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.848681,
+          19.097677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Mulund West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.950195,
+          19.171287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Bhayandar West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.850119,
+          19.300664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Ambernath, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.200121,
+          19.201251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Ulhasnagar, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.878723,
+          19.077793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Ulwe, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.022121,
+          18.970496
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Dahisar West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.855751,
+          19.251617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Marine Lines, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.826121,
+          18.942331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Fort, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.833358,
+          18.932197
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Santacruz West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.838051,
+          19.084077
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Ghatkopar West, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.904307,
+          19.091293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Mahim, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.840153,
+          19.042864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kalyan East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.139554,
+          19.223942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Mulund East, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.961702,
+          19.170432
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Palava Lakeshore, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.681841,
+          42.049481
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Bhiwandi, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.205053,
+          19.375943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Nadhal, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.878723,
+          19.077793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Boisar, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.847888,
+          19.786094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Palghar, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.878723,
+          19.077793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Mumbra, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.021579,
+          19.187604
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Titwala, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.834135,
+          19.007741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Rasayani, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.826337,
+          18.937456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Goveli, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.878723,
+          19.077793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Shirdhon, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.129732,
+          18.940421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kothimbe, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.916442,
+          19.541448
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Taloja, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.097866,
+          19.057108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kelwa, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.987741,
+          19.19405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Haloli, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.916442,
+          19.541448
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Mumbai Ocean"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.901884,
+          19.061558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Madh, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.792377,
+          19.138375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Sanjay Gandhi National Park, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.863661,
+          19.230932
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Wadi, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.880755,
+          19.084985
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Alibaug, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.883056,
+          18.65367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Navghar, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.961917,
+          19.167682
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Kanhor, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.878723,
+          19.077793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Palava Lakeshore 1, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.266975,
+          43.850564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Rai Village, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.818211,
+          18.914541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Rayate, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.847888,
+          19.786094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "region": "Arjunali, Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.205053,
+          19.375943
+        ]
+      }
+    }
+  ]
+}
