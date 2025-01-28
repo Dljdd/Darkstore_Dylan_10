@@ -8,6 +8,7 @@ import Settings from '@/components/icons/settings'
 import Workflows from '@/components/icons/workflows'
 import Map from '@/components/icons/map'
 import Inventory from '@/components/icons/inventory'
+import Location from '@/components/icons/location'
 
 export const clients = [...new Array(10)].map((client, index) => ({
   href: `/${index + 1}.png`,
@@ -98,6 +99,7 @@ export const menuOptions = [
   { name: 'Dashboard', Component: Home, href: '/dashboard' },
   { name: 'Workflows', Component: Workflows, href: '/workflows' },
   { name: 'WindsurfMap', Component: Map, href: '/windsurfMap' },
+  { name: 'LocationMap', Component: Location, href: '/locationMap' },
   { name: 'Inventory', Component: Inventory, href: '/inventory' },
   { name: 'Settings', Component: Settings, href: '/exec' },
   // { name: 'Connections', Component: Category, href: '/connections' },
