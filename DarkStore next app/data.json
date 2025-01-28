@@ -1,0 +1,35 @@
+[
+    {
+      "owner": "John Doe",
+      "warehouseSize": "14,000 sq.ft",
+      "pincode": "123456",
+      "areaName": "Downtown",
+      "zoneScore": 85,
+      "status": "Active"
+    },
+    {
+      "owner": "Jane Smith",
+      "warehouseSize": "10,600 sq.ft",
+      "pincode": "654321",
+      "areaName": "Midtown",
+      "zoneScore": 80,
+      "status": "Active"
+    },
+    {
+      "owner": "Mark Johnson",
+      "warehouseSize": "19,000 sq.ft",
+      "pincode": "789012",
+      "areaName": "Uptown",
+      "zoneScore": 90,
+      "status": "Inactive"
+    },
+    {
+      "owner": "Alice Brown",
+      "warehouseSize": "120,000 sq.ft",
+      "pincode": "345678",
+      "areaName": "Suburb",
+      "zoneScore": 95,
+      "status": "Active"
+    }
+  ]
+  

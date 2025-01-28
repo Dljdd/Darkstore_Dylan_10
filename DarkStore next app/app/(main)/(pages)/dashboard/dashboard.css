@@ -1,0 +1,20 @@
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .loader {
+    border: 8px solid rgba(255, 255, 255, 0.1); /* Light gray with transparency */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px; /* Increased size for better visibility */
+    height: 60px; /* Increased size for better visibility */
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.7); /* Glow effect */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
