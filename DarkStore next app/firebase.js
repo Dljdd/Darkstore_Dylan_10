@@ -1,6 +1,7 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDDNW3KR3872IhzmVynQi9BZyonk34_QVw",
@@ -10,10 +11,13 @@ const firebaseConfig = {
     storageBucket: "mumbaihacks-d25ec.appspot.com",
     messagingSenderId: "1021560488594",
     appId: "1:1021560488594:web:10cef061a0b13ce988dc4b"
-  };
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
 
-export { database };
+// Initialize services
+const database = getDatabase(app);
+const auth = getAuth(app);
+
+export { app, database, auth };

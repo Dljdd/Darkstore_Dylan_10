@@ -23,6 +23,7 @@ const listContainerStyle = {
   overflowY: 'auto',
   padding: '1rem',
   zIndex: 1
+
 };
 
 // Function to create popup HTML content
@@ -185,6 +186,7 @@ export default function WindsurfMap() {
           ))}
         </div>
       </div>
+
     </div>
   );
 }

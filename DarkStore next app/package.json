@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
     "@clerk/nextjs": "^5.7.5",
+    "@firebase/auth": "^1.8.2",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.20.0",
     "@radix-ui/react-accordion": "^1.2.1",
@@ -29,7 +30,7 @@
     "@uploadcare/react-uploader": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "firebase": "^11.0.1",
+    "firebase": "^11.2.0",
     "framer-motion": "^11.5.6",
     "lucide-react": "^0.445.0",
     "mapbox-gl": "^3.9.4",
