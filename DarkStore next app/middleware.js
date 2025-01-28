@@ -7,23 +7,23 @@ export function middleware(request) {
 
   const { pathname } = request.nextUrl;
 
-  // Public paths that don't require authentication
+  // Public paths that should be accessible without auth
   const publicPaths = ['/', '/signin', '/signup'];
   const isPublicPath = publicPaths.includes(pathname);
 
-  // Protected routes
+  // Protected routes that require authentication
   const protectedPaths = ['/dashboard', '/windsurfMap'];
   const isProtectedPath = protectedPaths.some(path => pathname.startsWith(path));
 
-  // Redirect to signin if accessing protected route without auth
+  // If user is not authenticated and tries to access protected routes
   if (isProtectedPath && !token) {
     const url = new URL('/signin', request.url);
     url.searchParams.set('callbackUrl', pathname);
     return NextResponse.redirect(url);
   }
 
-  // Redirect to dashboard if accessing auth pages while authenticated
-  if (token && isPublicPath) {
+  // Only redirect to dashboard if user is authenticated and trying to access auth pages
+  if (token && (pathname === '/signin' || pathname === '/signup')) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
