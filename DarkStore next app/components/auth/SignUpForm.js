@@ -6,6 +6,7 @@ import { auth } from '../../firebase';
 import { getDatabase, ref, set } from 'firebase/database';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Mail, Lock, Building2, Phone } from 'lucide-react';
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -90,79 +91,94 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="auth-page flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+    <div className="min-h-screen flex items-center justify-center bg-black/95 p-4">
+      <div className="w-full max-w-md space-y-8 bg-black border border-neutral-800 p-8 rounded-lg">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-bold text-white">
             Create your account
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <div className="bg-red-900/50 border border-red-800 text-red-200 px-4 py-3 rounded-lg" role="alert">
               <span className="block sm:inline">{error}</span>
             </div>
           )}
-          <div className="rounded-md shadow-sm space-y-4">
-            <div>
-              <label htmlFor="email" className="auth-label block text-sm font-medium mb-1">
+          <div className="rounded-md space-y-4">
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-neutral-300">
                 Email address
               </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className="auth-input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={handleChange}
-              />
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500" size={18} />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="password" className="auth-label block text-sm font-medium mb-1">
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium text-neutral-300">
                 Password
               </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="auth-input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleChange}
-              />
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500" size={18} />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="businessName" className="auth-label block text-sm font-medium mb-1">
+
+            <div className="space-y-2">
+              <label htmlFor="businessName" className="text-sm font-medium text-neutral-300">
                 Business Name
               </label>
-              <input
-                id="businessName"
-                name="businessName"
-                type="text"
-                required
-                className="auth-input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Enter your business name"
-                value={formData.businessName}
-                onChange={handleChange}
-              />
+              <div className="relative">
+                <Building2 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500" size={18} />
+                <input
+                  id="businessName"
+                  name="businessName"
+                  type="text"
+                  required
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  placeholder="Enter your business name"
+                  value={formData.businessName}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="phoneNumber" className="auth-label block text-sm font-medium mb-1">
+
+            <div className="space-y-2">
+              <label htmlFor="phoneNumber" className="text-sm font-medium text-neutral-300">
                 Phone Number
               </label>
-              <input
-                id="phoneNumber"
-                name="phoneNumber"
-                type="tel"
-                required
-                className="auth-input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Enter your phone number"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-              />
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500" size={18} />
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="tel"
+                  required
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  placeholder="Enter your phone number"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
           </div>
 
@@ -170,18 +186,21 @@ export default function SignUpForm() {
             <button
               type="submit"
               disabled={isLoading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-300 py-2 px-4 rounded-lg flex items-center justify-center gap-2"
             >
-              {isLoading ? 'Creating account...' : 'Sign up'}
+              {isLoading ? 'Creating account...' : 'Create account'}
             </button>
           </div>
-        </form>
 
-        <div className="text-center">
-          <Link href="/signin" className="auth-link font-medium hover:text-indigo-500">
-            Already have an account? Sign in
-          </Link>
-        </div>
+          <div className="text-center">
+            <Link 
+              href="/signin" 
+              className="text-blue-400 hover:text-blue-300 text-sm transition-colors duration-300"
+            >
+              Already have an account? Sign in
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );

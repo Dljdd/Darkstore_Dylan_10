@@ -3,57 +3,61 @@
 'use client'
 
 import React from 'react'
-import { Book, Headphones, Search } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import Image from 'next/image'
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { auth } from '@/firebase'
+import { signOut } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
 
 type Props = {}
 
 const InfoBar = (props: Props) => {
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    try {
+      // Sign out from Firebase
+      await signOut(auth)
+      
+      // Clear session cookie through API
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+      })
+
+      // Hard redirect to landing page
+      window.location.href = '/'
+    } catch (error) {
+      console.error('Error signing out:', error)
+    }
+  }
+
   return (
     <div className="flex flex-row justify-between items-center px-4 py-4 w-full dark:bg-black">
       <div className="flex items-center gap-2 font-bold">
       </div>
       
       <div className="absolute left-1/2 transform -translate-x-1/2">
-      <a href="/">
-        <Image
-          src="/logo.jpeg" // Replace with your logo path
-          alt="Company Logo"
-          width={210} // Adjust as needed
-          height={40} // Adjust as needed
-        />
+        <a href="/">
+          <Image
+            src="/logo.jpeg"
+            alt="Company Logo"
+            width={210}
+            height={40}
+          />
         </a>
       </div>
       
-      <div className="flex items-center gap-6">
-        <TooltipProvider>
-          <Tooltip delayDuration={0}>
-            <TooltipTrigger>
-              <Headphones />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Contact Support</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <TooltipProvider>
-          <Tooltip delayDuration={0}>
-            <TooltipTrigger>
-              <Book />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Guide</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+      <div className="flex items-center gap-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleLogout}
+          className="text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
+        >
+          <LogOut className="h-5 w-5" />
+        </Button>
       </div>
     </div>
   )
