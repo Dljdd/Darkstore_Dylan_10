@@ -29,6 +29,28 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+}
+
+/* Auth pages specific styles */
+.auth-page {
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  color: #111827;
+}
+
+.auth-input {
+  color: #111827 !important;
+  background-color: white !important;
+}
+
+.auth-label {
+  color: #374151 !important;
+}
+
+.auth-link {
+  color: #4f46e5 !important;
 }
 
 /* Map specific styles */
