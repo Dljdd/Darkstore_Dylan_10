@@ -23,10 +23,10 @@ export default function Home() {
             titleComponent={
               <div className="flex items-center flex-col">
                 <h1 className="text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-600 font-sans font-bold">
-                  Introducing ZoneScore
+                  Introducing DarkStore
                 </h1>
                 <p className="text-xl md:text-2xl mt-4 text-center text-neutral-400 max-w-3xl">
-                  ZoneScore uses cutting-edge AI-driven algorithms to assess the demand and profitability of potential dark store locations. 
+                  DarkStore uses cutting-edge AI-driven algorithms to assess the demand and profitability of potential dark store locations. 
                   Know exactly where to open your next store and maximize your returns.
                 </p>
                 <Button
@@ -35,7 +35,7 @@ export default function Home() {
                   onClick={() => router.push('/dashboard')} // Redirect to /dashboard
                 >
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-500 to-neutral-600 md:text-center font-sans group-hover:bg-gradient-to-r group-hover:from-black group-hover:to-black">
-                    Start Optimizing with ZoneScore Today
+                    Start Optimizing with DarkStore Today
                   </span>
                 </Button>
               </div>
