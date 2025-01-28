@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { createUser } from '../../lib/firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { getDatabase, ref, set } from 'firebase/database';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -11,48 +13,54 @@ export default function SignUpForm() {
     email: '',
     password: '',
     businessName: '',
-    role: 'warehouse_manager'
+    phoneNumber: ''
   });
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const validateForm = () => {
-    if (!formData.email || !formData.password || !formData.businessName) {
-      setError('All fields are required');
-      return false;
-    }
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
-      return false;
-    }
-    if (!formData.email.includes('@')) {
-      setError('Please enter a valid email address');
-      return false;
-    }
-    return true;
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
-    if (!validateForm()) {
-      return;
-    }
-
-    setLoading(true);
+    setIsLoading(true);
 
     try {
-      await createUser(formData.email, formData.password, {
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+
+      // Get the user object
+      const user = userCredential.user;
+
+      // Add additional user data to Realtime Database
+      const db = getDatabase();
+      await set(ref(db, `users/${user.uid}`), {
+        email: formData.email,
         businessName: formData.businessName,
-        role: formData.role
+        phoneNumber: formData.phoneNumber,
+        role: 'user',
+        createdAt: new Date().toISOString()
       });
-      router.push('/dashboard');
+
+      // Set session cookie
+      const idToken = await user.getIdToken();
+      await fetch('/api/auth/session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: idToken }),
+      });
+
+      // Redirect to dashboard
+      window.location.href = '/dashboard';
     } catch (error) {
-      console.error('Signup error:', error);
-      setError(error.message);
+      console.error('Sign up error:', error);
+      setError(getAuthErrorMessage(error.code));
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -66,12 +74,27 @@ export default function SignUpForm() {
     if (error) setError('');
   };
 
+  const getAuthErrorMessage = (errorCode) => {
+    switch (errorCode) {
+      case 'auth/email-already-in-use':
+        return 'An account with this email already exists.';
+      case 'auth/invalid-email':
+        return 'Invalid email address.';
+      case 'auth/operation-not-allowed':
+        return 'Email/password accounts are not enabled.';
+      case 'auth/weak-password':
+        return 'Password is too weak. Please use at least 6 characters.';
+      default:
+        return 'An error occurred during sign up. Please try again.';
+    }
+  };
+
   return (
     <div className="auth-page flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your DarkStore account
+            Create your account
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -105,9 +128,8 @@ export default function SignUpForm() {
                 name="password"
                 type="password"
                 required
-                minLength={6}
                 className="auth-input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Create a password (min. 6 characters)"
+                placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
               />
@@ -128,31 +150,29 @@ export default function SignUpForm() {
               />
             </div>
             <div>
-              <label htmlFor="role" className="auth-label block text-sm font-medium mb-1">
-                Role
+              <label htmlFor="phoneNumber" className="auth-label block text-sm font-medium mb-1">
+                Phone Number
               </label>
-              <select
-                id="role"
-                name="role"
+              <input
+                id="phoneNumber"
+                name="phoneNumber"
+                type="tel"
                 required
                 className="auth-input appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                value={formData.role}
+                placeholder="Enter your phone number"
+                value={formData.phoneNumber}
                 onChange={handleChange}
-              >
-                <option value="warehouse_manager">Warehouse Manager</option>
-                <option value="business_owner">Business Owner</option>
-                <option value="operations_manager">Operations Manager</option>
-              </select>
+              />
             </div>
           </div>
 
           <div>
             <button
               type="submit"
-              disabled={loading}
+              disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Creating account...' : 'Sign up'}
+              {isLoading ? 'Creating account...' : 'Sign up'}
             </button>
           </div>
         </form>

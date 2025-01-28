@@ -41,8 +41,16 @@ export default function DashboardPage() {
 
   const handleSignOut = async () => {
     try {
+      // Sign out from Firebase
       await signOut(auth);
-      router.push('/signin');
+      
+      // Clear session cookie through our API
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+      });
+
+      // Hard redirect to landing page
+      window.location.href = '/';
     } catch (error) {
       console.error('Error signing out:', error);
     }
