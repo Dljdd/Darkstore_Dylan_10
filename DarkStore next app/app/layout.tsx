@@ -8,7 +8,7 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
 const font = DM_Sans({subsets: ['latin']})
 
 export const metadata: Metadata = {
-  title: "Saas",
+  title: "Darkstore",
   description: "Automates your workflow",
 };
 
