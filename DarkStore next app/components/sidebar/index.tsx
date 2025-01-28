@@ -23,60 +23,44 @@ const MenuOptions = (props: Props) => {
   const pathName = usePathname()
 
   return (
-    <nav className="bg-gray-900 h-screen overflow-scroll flex items-center flex-col justify-between gap-10 py-6 px-2">
+    <nav className="bg-background h-screen overflow-scroll flex items-center flex-col justify-between gap-10 py-6 px-2 border-r border-border">
       <div className="flex items-center justify-center flex-col gap-8">
         <Link
-          className="flex font-bold flex-row text-gray-100 hover:text-gray-300 transition-colors"
+          className="flex font-bold flex-row text-foreground hover:text-muted-foreground transition-colors"
           href="/"
         >
-          {/* Your logo or brand */}
+          SAAS
         </Link>
-        <TooltipProvider>
-          {menuOptions.map((menuItem) => (
-            <motion.ul key={menuItem.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Tooltip delayDuration={0}>
-                <TooltipTrigger>
-                  <li>
+        <Separator className="bg-border" />
+        <div className="flex items-center justify-center flex-col gap-4">
+          {menuOptions.map((menuItem) => {
+            const isActive = pathName === menuItem.href
+            return (
+              <TooltipProvider key={menuItem.name}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
                     <Link
                       href={menuItem.href}
                       className={clsx(
-                        'group h-12 w-12 flex items-center justify-center rounded-lg p-2 cursor-pointer transition-all duration-300 ease-in-out',
-                        {
-                          'bg-gray-800 shadow-lg': pathName === menuItem.href,
-                          'hover:bg-gray-800': pathName !== menuItem.href,
-                        }
+                        "p-2 rounded-lg transition-colors",
+                        isActive
+                          ? "bg-primary text-primary-foreground"
+                          : "hover:bg-accent text-muted-foreground hover:text-accent-foreground"
                       )}
                     >
-                      <motion.div
-                        whileHover={{ rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      >
-                        <menuItem.Component
-                          selected={pathName === menuItem.href}
-                          className={clsx(
-                            'text-gray-400 transition-colors duration-300',
-                            {
-                              'text-gray-100': pathName === menuItem.href,
-                            }
-                          )}
-                        />
-                      </motion.div>
+                      <menuItem.Component className="h-6 w-6" />
                     </Link>
-                  </li>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="right"
-                  className="bg-gray-800 text-gray-100 border border-gray-700"
-                >
-                  <p>{menuItem.name}</p>
-                </TooltipContent>
-              </Tooltip>
-            </motion.ul>
-          ))}
-        </TooltipProvider>
-        <Separator className="bg-gray-700" />
+                  </TooltipTrigger>
+                  <TooltipContent side="right">
+                    <p className="font-medium">{menuItem.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )
+          })}
+        </div>
       </div>
-      <div className="flex items-center justify-center flex-col gap-8">
+      <div className="flex items-center justify-center flex-col gap-4">
         <ModeToggle />
       </div>
     </nav>
