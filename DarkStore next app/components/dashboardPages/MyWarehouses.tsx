@@ -100,113 +100,119 @@ export default function Component() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
-      <h2 className="text-3xl font-bold mb-8">My Warehouses</h2>
+    <div className="text-white">
+      <h2 className="text-2xl font-semibold mb-6">My Warehouses</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {warehouses.map((warehouse) => (
-          <Card key={warehouse.id} className="bg-gray-800 border-gray-700">
+          <Card key={warehouse.id} className="bg-black/95 border border-neutral-800">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{warehouse.darkStoreName}</CardTitle>
-              <Warehouse className="h-4 w-4 text-blue-400" />
+              <CardTitle className="text-lg font-medium text-white">{warehouse.darkStoreName}</CardTitle>
+              <Warehouse className="h-5 w-5 text-neutral-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{warehouse.warehouseSize} sq.ft</div>
-              <p className="text-xs text-gray-400">{warehouse.warehouseAddress}</p>
+              <div className="text-2xl font-bold text-white">{warehouse.warehouseSize} sq.ft</div>
+              <p className="text-sm text-neutral-400 mt-1">{warehouse.warehouseAddress}</p>
             </CardContent>
           </Card>
         ))}
-        <Card className="bg-gray-800 border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer" onClick={() => setShowForm(true)}>
+        <Card 
+          className="bg-black/95 border border-neutral-800 hover:bg-neutral-900 transition-colors cursor-pointer" 
+          onClick={() => setShowForm(true)}
+        >
           <CardHeader className="flex flex-row items-center justify-center h-full">
-            <Plus className="h-12 w-12 text-blue-400" />
+            <Plus className="h-12 w-12 text-neutral-400 hover:text-white transition-colors" />
           </CardHeader>
         </Card>
       </div>
       {showForm && (
-        <Card className="bg-gray-800 border-gray-700 mb-8">
+        <Card className="bg-black/95 border border-neutral-800 mb-8">
           <CardHeader>
-            <CardTitle>Add New Warehouse</CardTitle>
+            <CardTitle className="text-xl font-semibold text-white">Add New Warehouse</CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleWarehouseSubmit} className="space-y-4">
+            <form onSubmit={handleWarehouseSubmit} className="space-y-6">
               <ScrollArea className="h-[60vh] pr-4">
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="darkStoreName">Dark Store Name</Label>
+                      <Label htmlFor="darkStoreName" className="text-neutral-200">Dark Store Name</Label>
                       <Input
                         id="darkStoreName"
                         name="darkStoreName"
                         value={warehouseDetails.darkStoreName}
                         onChange={handleWarehouseChange}
-                        className="bg-gray-700 border-gray-600"
+                        className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
                         placeholder="Enter Dark Store Name"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="warehouseSize">Warehouse Size (sq.ft)</Label>
+                      <Label htmlFor="warehouseSize" className="text-neutral-200">Warehouse Size (sq.ft)</Label>
                       <Input
                         type="number"
                         id="warehouseSize"
                         name="warehouseSize"
                         value={warehouseDetails.warehouseSize}
                         onChange={handleWarehouseChange}
-                        className="bg-gray-700 border-gray-600"
+                        className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
                         placeholder="Enter Warehouse Size"
                         required
                       />
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="ceilingHeight">Ceiling Height</Label>
+                      <Label htmlFor="ceilingHeight" className="text-neutral-200">Ceiling Height</Label>
                       <Input
                         type="number"
                         id="ceilingHeight"
                         name="ceilingHeight"
                         value={warehouseDetails.ceilingHeight}
                         onChange={handleWarehouseChange}
-                        className="bg-gray-700 border-gray-600"
+                        className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
                         placeholder="Enter Ceiling Height"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="storageCapacity">Storage Capacity (pallets/shelves)</Label>
+                      <Label htmlFor="storageCapacity" className="text-neutral-200">Storage Capacity (pallets/shelves)</Label>
                       <Input
                         type="number"
                         id="storageCapacity"
                         name="storageCapacity"
                         value={warehouseDetails.storageCapacity}
                         onChange={handleWarehouseChange}
-                        className="bg-gray-700 border-gray-600"
+                        className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
                         placeholder="Enter Storage Capacity"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="warehouseAddress">Warehouse Address</Label>
+                    <Label htmlFor="warehouseAddress" className="text-neutral-200">Warehouse Address</Label>
                     <Input
                       id="warehouseAddress"
                       name="warehouseAddress"
                       value={warehouseDetails.warehouseAddress}
                       onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
+                      className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
                       placeholder="Enter Warehouse Address"
                       required
                     />
                   </div>
-                  <div className="flex space-x-4">
+                  <div className="flex flex-wrap gap-6">
                     <div className="flex items-center space-x-2">
                       <Checkbox
                         id="loadingDock"
                         name="loadingDock"
                         checked={warehouseDetails.loadingDock}
                         onCheckedChange={(checked) =>
-                          setWarehouseDetails((prev) => ({ ...prev, loadingDock: checked as boolean }))
+                          handleWarehouseChange({
+                            target: { name: "loadingDock", type: "checkbox", checked },
+                          } as any)
                         }
+                        className="border-neutral-800 data-[state=checked]:bg-neutral-700"
                       />
-                      <Label htmlFor="loadingDock">Loading Dock</Label>
+                      <Label htmlFor="loadingDock" className="text-neutral-200">Loading Dock</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Checkbox
@@ -214,124 +220,72 @@ export default function Component() {
                         name="powerBackup"
                         checked={warehouseDetails.powerBackup}
                         onCheckedChange={(checked) =>
-                          setWarehouseDetails((prev) => ({ ...prev, powerBackup: checked as boolean }))
+                          handleWarehouseChange({
+                            target: { name: "powerBackup", type: "checkbox", checked },
+                          } as any)
                         }
+                        className="border-neutral-800 data-[state=checked]:bg-neutral-700"
                       />
-                      <Label htmlFor="powerBackup">Power Backup</Label>
+                      <Label htmlFor="powerBackup" className="text-neutral-200">Power Backup</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="insuranceCoverage"
+                        name="insuranceCoverage"
+                        checked={warehouseDetails.insuranceCoverage}
+                        onCheckedChange={(checked) =>
+                          handleWarehouseChange({
+                            target: { name: "insuranceCoverage", type: "checkbox", checked },
+                          } as any)
+                        }
+                        className="border-neutral-800 data-[state=checked]:bg-neutral-700"
+                      />
+                      <Label htmlFor="insuranceCoverage" className="text-neutral-200">Insurance Coverage</Label>
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="temperatureControl">Temperature Control</Label>
-                    <Input
-                      id="temperatureControl"
-                      name="temperatureControl"
-                      value={warehouseDetails.temperatureControl}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="e.g., ambient, refrigerated, frozen"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="securityFeatures">Security Features</Label>
-                    <Input
-                      id="securityFeatures"
-                      name="securityFeatures"
-                      value={warehouseDetails.securityFeatures}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="e.g., CCTV, 24/7 security"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="operationalHours">Operational Hours</Label>
-                    <Input
-                      id="operationalHours"
-                      name="operationalHours"
-                      value={warehouseDetails.operationalHours}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="Enter Operational Hours"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="accessibility">Accessibility</Label>
-                    <Input
-                      id="accessibility"
-                      name="accessibility"
-                      value={warehouseDetails.accessibility}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="e.g., parking, ramp access"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="availableFacilities">Available Facilities</Label>
-                    <Input
-                      id="availableFacilities"
-                      name="availableFacilities"
-                      value={warehouseDetails.availableFacilities}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="e.g., restrooms, break rooms"
-                    />
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="insuranceCoverage"
-                      name="insuranceCoverage"
-                      checked={warehouseDetails.insuranceCoverage}
-                      onCheckedChange={(checked) =>
-                        setWarehouseDetails((prev) => ({ ...prev, insuranceCoverage: checked as boolean }))
-                      }
-                    />
-                    <Label htmlFor="insuranceCoverage">Insurance Coverage</Label>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="fireSafetyCompliance">Fire Safety Compliance</Label>
-                    <Input
-                      id="fireSafetyCompliance"
-                      name="fireSafetyCompliance"
-                      value={warehouseDetails.fireSafetyCompliance}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="Enter Fire Safety Compliance"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="yearOfEstablishment">Year of Establishment</Label>
-                    <Input
-                      id="yearOfEstablishment"
-                      name="yearOfEstablishment"
-                      value={warehouseDetails.yearOfEstablishment}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="Enter Year of Establishment"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="certifications">Certifications</Label>
-                    <Input
-                      id="certifications"
-                      name="certifications"
-                      value={warehouseDetails.certifications}
-                      onChange={handleWarehouseChange}
-                      className="bg-gray-700 border-gray-600"
-                      placeholder="e.g., FSSAI, ISO"
-                    />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="temperatureControl" className="text-neutral-200">Temperature Control</Label>
+                      <Input
+                        id="temperatureControl"
+                        name="temperatureControl"
+                        value={warehouseDetails.temperatureControl}
+                        onChange={handleWarehouseChange}
+                        className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
+                        placeholder="Temperature Control Details"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="securityFeatures" className="text-neutral-200">Security Features</Label>
+                      <Input
+                        id="securityFeatures"
+                        name="securityFeatures"
+                        value={warehouseDetails.securityFeatures}
+                        onChange={handleWarehouseChange}
+                        className="bg-neutral-900 border-neutral-800 text-white placeholder:text-neutral-500"
+                        placeholder="Security Features"
+                      />
+                    </div>
                   </div>
                 </div>
               </ScrollArea>
-              <Button type="submit" className="w-full">
-                <Save className="mr-2 h-4 w-4" /> Add Warehouse
-              </Button>
+              <div className="flex justify-end pt-4 border-t border-neutral-800">
+                <Button
+                  type="submit"
+                  className="bg-neutral-800 text-white hover:bg-neutral-700 transition-colors"
+                >
+                  <Save className="h-4 w-4 mr-2" />
+                  Save Warehouse
+                </Button>
+              </div>
             </form>
           </CardContent>
         </Card>
       )}
       {warehouses.length > 0 && (
-        <Card className="bg-gray-800 border-gray-700">
+        <Card className="bg-black/95 border border-neutral-800">
           <CardHeader>
-            <CardTitle>Warehouse Details</CardTitle>
+            <CardTitle className="text-xl font-semibold text-white">Warehouse Details</CardTitle>
           </CardHeader>
           <CardContent>
             <Accordion type="single" collapsible className="w-full">
@@ -353,7 +307,7 @@ export default function Component() {
                         <strong>Storage Capacity:</strong> {warehouse.storageCapacity}
                       </p>
                       <p>
-                        <strong>Loading Dock:</strong> {warehouse.loadingDock ?   "Yes" : "No"}
+                        <strong>Loading Dock:</strong> {warehouse.loadingDock ? "Yes" : "No"}
                       </p>
                       <p>
                         <strong>Power Backup:</strong> {warehouse.powerBackup ? "Yes" : "No"}

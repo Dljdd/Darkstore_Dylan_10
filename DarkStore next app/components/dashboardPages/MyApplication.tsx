@@ -102,24 +102,24 @@ const MyApplicationsComponent = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold">My Applications</h2>
+    <div className="text-white">
+      <h2 className="text-2xl font-semibold mb-6">My Applications</h2>
       <div className="mt-4 grid grid-cols-1 gap-4">
         {applications.map((app, index) => (
-          <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
+          <div key={index} className="bg-black/95 border border-neutral-800 rounded-lg shadow-lg p-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
               <div className="flex flex-col">
-                <span className="text-lg font-medium">{app.name}</span>
-                <div className="flex flex-col text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  <div className="flex items-center gap-1">
+                <span className="text-lg font-medium text-white">{app.name}</span>
+                <div className="flex flex-col text-sm text-neutral-400 mt-2 space-y-1">
+                  <div className="flex items-center gap-2">
                     <Calculator className="h-4 w-4" />
                     <span>Base: ₹{app.earnings.base}/hr</span>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-2">
                     <Calculator className="h-4 w-4 text-yellow-500" />
                     <span>Peak: ₹{app.earnings.peak}/hr</span>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-2">
                     <Calculator className="h-4 w-4 text-blue-500" />
                     <span>Night: ₹{app.earnings.night}/hr</span>
                   </div>
@@ -127,26 +127,24 @@ const MyApplicationsComponent = () => {
               </div>
               
               <div className="flex items-center gap-4">
-                {/* Conditionally render status only if it's not "Apply" */}
                 {app.status !== "Apply" && (
                   <span className={`text-sm px-4 py-2 rounded-full font-medium ${
                     app.status === "In Review"
-                      ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400"
+                      ? "bg-yellow-900/20 text-yellow-400 border border-yellow-400/20"
                       : app.status === "Approved"
-                      ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+                      ? "bg-green-900/20 text-green-400 border border-green-400/20"
                       : app.status === "Rejected"
-                      ? "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"
+                      ? "bg-red-900/20 text-red-400 border border-red-400/20"
                       : ""
                   }`}>
                     {app.status}
                   </span>
                 )}
                 
-                {/* Render the "Apply" button only if the status is "Apply" */}
                 {app.status === "Apply" && (
                   <button
                     onClick={() => handleApply(app.name)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+                    className="bg-neutral-800 text-white px-6 py-2 rounded-lg hover:bg-neutral-700 transition-colors duration-200"
                   >
                     Apply
                   </button>
@@ -157,9 +155,9 @@ const MyApplicationsComponent = () => {
         ))}
       </div>
       
-      <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-        <h3 className="text-lg font-medium mb-2">Earnings Information</h3>
-        <ul className="list-disc list-inside space-y-1 text-sm">
+      <div className="mt-8 p-6 bg-black/95 border border-neutral-800 rounded-lg">
+        <h3 className="text-lg font-medium mb-4 text-white">Earnings Information</h3>
+        <ul className="list-disc list-inside space-y-2 text-sm text-neutral-400">
           <li>Base rates apply during standard hours (10 AM - 5 PM)</li>
           <li>Peak rates apply during rush hours (6 PM - 10 PM)</li>
           <li>Night rates apply for late hours (10 PM - 7 AM)</li>
