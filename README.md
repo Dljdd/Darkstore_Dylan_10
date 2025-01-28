@@ -24,19 +24,20 @@
 ### Database: Firebase
 - **Description**: Provides real-time database capabilities and seamless integration with web applications.
 
-## Recommendations to Enhance the Stack
+### Authentication: Firebase Authentication
+- **Description**: Secure user accounts and streamline warehouse onboarding processes.
+
+### Machine Learning Framework: TensorFlow or PyTorch
+- **Description**: Enhance the AI-based demand prediction model with powerful ML capabilities.
+
+## Recommendations to Enhance the Stack(Not yet implemented)
 
 ### Visualization Library: D3.js or Chart.js
 - **Use Case**: Create dynamic and interactive charts/graphs for the AI Insights Dashboard.
 
-### Authentication: Firebase Authentication
-- **Use Case**: Secure user accounts and streamline warehouse onboarding processes.
-
 ### Cloud Functions: Firebase Cloud Functions
 - **Use Case**: Implement serverless functions for tasks like periodic data updates and notifications.
 
-### Machine Learning Framework: TensorFlow or PyTorch
-- **Use Case**: Enhance the AI-based demand prediction model with powerful ML capabilities.
 
 ---
 This tech stack provides a robust foundation for DarkStore's development, ensuring scalability, performance, and seamless integration of AI-driven insights.
