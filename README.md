@@ -10,12 +10,37 @@
 - **Dynamic Mapping:** Identify the most profitable locations for dark stores using interactive maps.
 - **Data-Backed Insights:** Gain insights into profitability and potential based on order volume, transaction history, app usage trends, and seasonal patterns.
 
-## Technology Stack
+## Tech Stack Overview
 
-- **Frontend:** Next.js
-- **Backend:** (Specify backend technologies if applicable)
-- **Database:** (Specify database technologies if applicable)
-- **APIs:** (List any external APIs being used)
+### Backend: Python with FastAPI
+- **Description**: High-performance framework ideal for building APIs, especially for AI/ML applications.
+
+### Frontend: Next.js
+- **Description**: Scalable framework for server-side rendered React applications.
+
+### Map Rendering: Mapbox
+- **Description**: Powerful tool for interactive and customizable map visualizations.
+
+### Database: Firebase
+- **Description**: Provides real-time database capabilities and seamless integration with web applications.
+
+## Recommendations to Enhance the Stack
+
+### Visualization Library: D3.js or Chart.js
+- **Use Case**: Create dynamic and interactive charts/graphs for the AI Insights Dashboard.
+
+### Authentication: Firebase Authentication
+- **Use Case**: Secure user accounts and streamline warehouse onboarding processes.
+
+### Cloud Functions: Firebase Cloud Functions
+- **Use Case**: Implement serverless functions for tasks like periodic data updates and notifications.
+
+### Machine Learning Framework: TensorFlow or PyTorch
+- **Use Case**: Enhance the AI-based demand prediction model with powerful ML capabilities.
+
+---
+This tech stack provides a robust foundation for DarkStore's development, ensuring scalability, performance, and seamless integration of AI-driven insights.
+
 
 ## Installation
 
