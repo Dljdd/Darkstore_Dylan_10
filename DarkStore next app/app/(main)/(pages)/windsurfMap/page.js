@@ -4,8 +4,26 @@ import { useEffect, useRef, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const mapContainerStyle = {
-  height: '100%',
-  width: '100%'
+  position: 'fixed',
+  top: '64px', // Height of navbar
+  left: '100px', // Width of sidebar
+  right: '300px', // Leave space for the list component
+  bottom: 0,
+  height: 'calc(100vh - 64px)', // Subtract navbar height
+  width: 'calc(100vw - 400px)', // Subtract sidebar and list width
+  zIndex: 1
+};
+
+const listContainerStyle = {
+  position: 'fixed',
+  top: '64px',
+  right: 0,
+  width: '300px',
+  height: 'calc(100vh - 64px)',
+  overflowY: 'auto',
+  padding: '1rem',
+  zIndex: 1
+
 };
 
 // Function to create popup HTML content
@@ -41,6 +59,7 @@ export default function WindsurfMap() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [mapboxgl, setMapboxgl] = useState(null);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     import('mapbox-gl').then((mapboxModule) => {
@@ -114,6 +133,8 @@ export default function WindsurfMap() {
           map.current.getCanvas().style.cursor = '';
         });
 
+        setLocations(geojsonData.features);
+
       } catch (error) {
         console.error('Error loading GeoJSON:', error);
       }
@@ -128,35 +149,44 @@ export default function WindsurfMap() {
   }, [mapboxgl]);
 
   return (
-    <div className="map-container">
+    <div className="relative">
       <div ref={mapContainer} style={mapContainerStyle} />
-      <style jsx global>{`
-        .store-popup {
-          padding: 12px;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-        .store-title {
-          margin: 0 0 8px 0;
-          font-size: 16px;
-          font-weight: 600;
-          color: #1a1a1a;
-        }
-        .store-details {
-          font-size: 14px;
-          line-height: 1.4;
-        }
-        .store-details p {
-          margin: 4px 0;
-          color: #4a4a4a;
-        }
-        .store-details strong {
-          color: #1a1a1a;
-        }
-        .mapboxgl-popup-content {
-          border-radius: 8px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-      `}</style>
+      <div 
+        style={listContainerStyle} 
+        className="bg-background border-l border-border"
+      >
+        <h2 className="text-xl font-semibold mb-4 text-foreground">Locations</h2>
+        <div className="space-y-4">
+          {locations.map((location, index) => (
+            <div 
+              key={index}
+              className="p-4 border border-border rounded-lg 
+                       hover:bg-accent cursor-pointer
+                       bg-card text-card-foreground
+                       transition-colors duration-200"
+              onClick={() => {
+                map.current.flyTo({
+                  center: location.geometry.coordinates,
+                  zoom: 14
+                });
+              }}
+            >
+              <h3 className="font-medium text-foreground">
+                {location.properties.name || location.properties.region}
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                {location.properties.region}
+              </p>
+              {location.properties.storageSpace && (
+                <p className="text-sm text-muted-foreground">
+                  Storage: {location.properties.storageSpace}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }
