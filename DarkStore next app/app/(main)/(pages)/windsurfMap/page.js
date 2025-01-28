@@ -30,12 +30,12 @@ const listContainerStyle = {
 const createPopupHTML = (properties) => {
   const { name, region, storageSpace, company } = properties;
   return `
-    <div class="store-popup">
-      <h3 class="store-title">${name || region}</h3>
+    <div style="color: black; padding: 10px;" class="store-popup">
+      <h3 style="margin: 0 0 10px 0; font-weight: bold;">${name || region}</h3>
       <div class="store-details">
-        <p><strong>Location:</strong> ${region}</p>
-        ${storageSpace ? `<p><strong>Storage Space:</strong> ${storageSpace}</p>` : ''}
-        ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
+        <p style="margin: 5px 0;"><strong>Location:</strong> ${region}</p>
+        ${storageSpace ? `<p style="margin: 5px 0;"><strong>Storage Space:</strong> ${storageSpace}</p>` : ''}
+        ${company ? `<p style="margin: 5px 0;"><strong>Company:</strong> ${company}</p>` : ''}
       </div>
     </div>
   `;

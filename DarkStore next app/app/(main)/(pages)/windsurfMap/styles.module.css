@@ -4,6 +4,41 @@
   height: 100vh;
 }
 
+/* Override Mapbox popup styles */
+:global(.mapboxgl-popup-content) {
+  padding: 0;
+  color: black;
+}
+
+:global(.mapboxgl-popup-close-button) {
+  color: black;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.store-popup {
+  color: black;
+  padding: 15px;
+}
+
+.store-popup h3 {
+  color: black;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.store-popup p {
+  color: black;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.store-popup strong {
+  color: black;
+  font-weight: 600;
+}
+
 /* Ensure Mapbox GL CSS is imported in your app */
 :global(.mapboxgl-map) {
   width: 100%;
