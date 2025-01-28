@@ -1173,6 +1173,114 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "DS006",
+        "name": "Nalasopara Quick",
+        "region": "Nalasopara, Mumbai",
+        "storageSpace": "1500 sq ft",
+        "company": "Swiggy",
+        "type": "dark_store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.820123,
+          19.417652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DS007",
+        "name": "Ulhasnagar Central",
+        "region": "Ulhasnagar, Mumbai",
+        "storageSpace": "2100 sq ft",
+        "company": "Blinkit",
+        "type": "dark_store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.164543,
+          19.221234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DS008",
+        "name": "Rasayani Distribution",
+        "region": "Rasayani, Mumbai",
+        "storageSpace": "3200 sq ft",
+        "company": "Zepto",
+        "type": "dark_store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.176432,
+          18.891234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DS009",
+        "name": "Arjunali Express",
+        "region": "Arjunali, Mumbai",
+        "storageSpace": "1900 sq ft",
+        "company": "Swiggy",
+        "type": "dark_store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.123456,
+          19.123456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DS010",
+        "name": "Nadhal Center",
+        "region": "Nadhal, Mumbai",
+        "storageSpace": "2400 sq ft",
+        "company": "Blinkit",
+        "type": "dark_store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.987654,
+          19.234567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "DS011",
+        "name": "Rai Village Hub",
+        "region": "Rai Village, Mumbai",
+        "storageSpace": "2700 sq ft",
+        "company": "Zepto",
+        "type": "dark_store"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.876543,
+          19.345678
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "region": "Andheri East, Mumbai",
         "type": "dark_store"
       },

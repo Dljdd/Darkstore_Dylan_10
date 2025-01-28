@@ -1,0 +1,357 @@
+[
+    {
+      "region": "Andheri East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.85778638370039, 19.110458724992743]
+    },
+    {
+      "region": "Andheri West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84036785583724, 19.126440323646445]
+    },
+    {
+      "region": "Mira Road East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.86485711230135, 19.26059174993157]
+    },
+    {
+      "region": "Chembur, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.8935111487164, 19.064003563295092]
+    },
+    {
+      "region": "Goregaon East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84573818656287, 19.159912694934]
+    },
+    {
+      "region": "Powai, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.91272014000913, 19.125422846541767]
+    },
+    {
+      "region": "Nerul (Navi Mumbai)",
+      "type": "dark_store",
+      "coordinates": [73.0055411562887, 19.03508808800589]
+    },
+    {
+      "region": "Malad West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.85066992936346, 19.18384623092852]
+    },
+    {
+      "region": "Thane West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.02546467034115, 19.207018657181933]
+    },
+    {
+      "region": "Naupada, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.8342179319089, 19.0642667063468]
+    },
+    {
+      "region": "Dombivli, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.08322332046642, 19.20769098457359]
+    },
+    {
+      "region": "Hiranandani Estate, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.99125045457141, 19.254600106012223]
+    },
+    {
+      "region": "Airoli, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.00455804142761, 19.163250077433563]
+    },
+    {
+      "region": "Kopar Khairane (Navi Mumbai)",
+      "type": "dark_store",
+      "coordinates": [72.99622557971627, 19.111060601053666]
+    },
+    {
+      "region": "Byculla, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.83516997692304, 18.969599061867605]
+    },
+    {
+      "region": "Parel, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84099367905839, 19.00950654099492]
+    },
+    {
+      "region": "Kharghar (Navi Mumbai)",
+      "type": "dark_store",
+      "coordinates": [73.07576331175383, 19.06174403667036]
+    },
+    {
+      "region": "Kandivali East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.86947380280967, 19.20907725804321]
+    },
+    {
+      "region": "Bandra West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.83482313530185, 19.055067079617103]
+    },
+    {
+      "region": "Vashi, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.99525838446309, 19.080028090431494]
+    },
+    {
+      "region": "Sion, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.86258359972642, 19.034316767095994]
+    },
+    {
+      "region": "Borivali East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.87161036429829, 19.218089895788793]
+    },
+    {
+      "region": "Lower Parel, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.82797833729188, 19.00362774870748]
+    },
+    {
+      "region": "Bhandup West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.93655953734978, 19.154966345193692]
+    },
+    {
+      "region": "Virar, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.83477995613715, 18.9237968432929]
+    },
+    {
+      "region": "Kandivali West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84186041107175, 19.202448282065845]
+    },
+    {
+      "region": "Santacruz East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.86572542521348, 19.08047085239616]
+    },
+    {
+      "region": "Borivali West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84872970302806, 19.237780232747063]
+    },
+    {
+      "region": "Vasai, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.0139425993924, 19.092867408464144]
+    },
+    {
+      "region": "Goregaon West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84277939725122, 19.169782983941545]
+    },
+    {
+      "region": "Kalyan West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84374510285691, 19.0042187358356]
+    },
+    {
+      "region": "Nalasopara, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.83124535881211, 18.94466603749603]
+    },
+    {
+      "region": "Panvel, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.11037063598633, 18.990337969362]
+    },
+    {
+      "region": "Mulund West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.94701576232912, 19.17729344435371]
+    },
+    {
+      "region": "Ghatkopar East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.91272014000913, 19.085145598608168]
+    },
+    {
+      "region": "Dadar West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84015310036261, 19.023037214305155]
+    },
+    {
+      "region": "Worli, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.81642021571828, 19.011325023229208]
+    },
+    {
+      "region": "Kurla West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.88484949988813, 19.07624935574091]
+    },
+    {
+      "region": "Dahisar East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.86024285681276, 19.25748957577379]
+    },
+    {
+      "region": "Marine Lines, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.81642021571828, 18.932922346620515]
+    },
+    {
+      "region": "Fort, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84015310036261, 18.94012535038997]
+    },
+    {
+      "region": "Santacruz West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.83877319277333, 19.08853427642585]
+    },
+    {
+      "region": "Ghatkopar West, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.90263423250298, 19.090469308661945]
+    },
+    {
+      "region": "Mahim, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.83389496457612, 19.045988024199158]
+    },
+    {
+      "region": "Kalyan East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.14928308619477, 19.22958251810731]
+    },
+    {
+      "region": "Mulund East, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.96042652234142, 19.170833005646184]
+    },
+    {
+      "region": "Palava Lakeshore, Mumbai",
+      "type": "dark_store",
+      "coordinates": [-87.68634593890113, 42.04212078218096]
+    },
+    {
+      "region": "Bhiwandi, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.20789567133936, 19.36721033783684]
+    },
+    {
+      "region": "Nadhal, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.8881768882736, 19.07624935574091]
+    },
+    {
+      "region": "Boisar, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84630831167607, 19.784075118115837]
+    },
+    {
+      "region": "Palghar, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.88778796476174, 19.085145598608168]
+    },
+    {
+      "region": "Mumbra, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.02539640998947, 19.184629293377657]
+    },
+    {
+      "region": "Titwala, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.83236565357451, 19.011325023229208]
+    },
+    {
+      "region": "Rasayani, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.81669036796205, 18.946299213431484]
+    },
+    {
+      "region": "Goveli, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.88484949988813, 19.082516475705983]
+    },
+    {
+      "region": "Shirdhon, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.12242956708351, 18.950341865765466]
+    },
+    {
+      "region": "Kothimbe, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.9196266524489, 19.549867761702096]
+    },
+    {
+      "region": "Taloja, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.09055550948464, 19.060150097817694]
+    },
+    {
+      "region": "Kelwa, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.98784765578543, 19.196611938535142]
+    },
+    {
+      "region": "Haloli, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.91038517373215, 19.537738736835657]
+    },
+    {
+      "region": "Mumbai Ocean",
+      "type": "dark_store",
+      "coordinates": [72.89710054608922, 19.06871035838836]
+    },
+    {
+      "region": "Madh, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.79982644467218, 19.134098784462132]
+    },
+    {
+      "region": "Sanjay Gandhi National Park, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.87233272371037, 19.229650571270813]
+    },
+    {
+      "region": "Wadi, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.88101907234561, 19.092486556372883]
+    },
+    {
+      "region": "Alibaug, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.87734919592963, 18.652626377843227]
+    },
+    {
+      "region": "Navghar, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.96458917143444, 19.169241721980327]
+    },
+    {
+      "region": "Kanhor, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.88348792123625, 19.083590722674817]
+    },
+    {
+      "region": "Palava Lakeshore 1, Mumbai",
+      "type": "dark_store",
+      "coordinates": [-79.26691669193126, 43.85717778948053]
+    },
+    {
+      "region": "Rai Village, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.81895038154836, 18.911924860376423]
+    },
+    {
+      "region": "Rayate, Mumbai",
+      "type": "dark_store",
+      "coordinates": [72.84296977970818, 19.782361715051064]
+    },
+    {
+      "region": "Arjunali, Mumbai",
+      "type": "dark_store",
+      "coordinates": [73.2033300921014, 19.375938647225773]
+    }
+  ]
