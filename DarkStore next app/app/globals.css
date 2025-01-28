@@ -17,16 +17,10 @@
 }
 
 /* Reset default margins and padding */
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-*::-webkit-scrollbar {
-  display: none !important;
 }
 
 html,
@@ -35,6 +29,15 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* Map specific styles */
+.map-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
 }
 
@@ -43,11 +46,15 @@ body {
   width: 100%;
 }
 
+.mapboxgl-popup {
+  max-width: 300px !important;
+}
+
 .bg-radial-gradient {
   background-image: radial-gradient(
     circle at 10% 20%,
-    rgba(4, 159, 108, 1) 0%,
-    rgba(194, 254, 113, 1) 90.1%
+    rgb(0, 0, 0) 0%,
+    rgb(64, 64, 64) 90.2%
   );
 }
 

@@ -4,13 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const mapContainerStyle = {
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  height: '100vh',
-  width: '100vw'
+  height: '100%',
+  width: '100%'
 };
 
 // Function to create popup HTML content
@@ -133,7 +128,7 @@ export default function WindsurfMap() {
   }, [mapboxgl]);
 
   return (
-    <main style={{ height: '100vh', width: '100vw', position: 'relative' }}>
+    <div className="map-container">
       <div ref={mapContainer} style={mapContainerStyle} />
       <style jsx global>{`
         .store-popup {
@@ -162,6 +157,6 @@ export default function WindsurfMap() {
           box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
       `}</style>
-    </main>
+    </div>
   );
 }
