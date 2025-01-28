@@ -1,0 +1,11 @@
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Ensure Mapbox GL CSS is imported in your app */
+:global(.mapboxgl-map) {
+  width: 100%;
+  height: 100%;
+}
