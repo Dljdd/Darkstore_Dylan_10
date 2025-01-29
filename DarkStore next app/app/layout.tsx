@@ -4,6 +4,7 @@ import {DM_Sans} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { UserProvider } from '@auth0/nextjs-auth0/client';
+import Script from "next/script";
 
 const font = DM_Sans({subsets: ['latin']})
 
@@ -18,21 +19,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return ( 
-
     <html lang="en">
-       <UserProvider>
-      <body
-        className={font.className}>
-      
-         <ThemeProvider
+      <head>
+        <Script
+          src="https://checkout.razorpay.com/v1/checkout.js"
+          strategy="beforeInteractive"
+        />
+      </head>
+      <UserProvider>
+        <body className={font.className}>
+          <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-        {children}
-        </ThemeProvider>
-      </body>
+            {children}
+          </ThemeProvider>
+        </body>
       </UserProvider>
     </html>
   );

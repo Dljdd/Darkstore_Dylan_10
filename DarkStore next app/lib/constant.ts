@@ -9,7 +9,7 @@ import Map from '@/components/icons/map'
 import Inventory from '@/components/icons/inventory'
 import Location from '@/components/icons/location'
 
-export const clients = [...new Array(10)].map((client, index) => ({
+export const clients = [...new Array(6)].map((client, index) => ({
   href: `/${index + 1}.png`,
 }))
 

@@ -33,25 +33,25 @@ const DashboardPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground p-8">
-      <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <div className="mb-12 pt-8 text-center">
+        <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+          Dashboard
+        </h1>
+        <p className="text-lg text-muted-foreground mt-2">
+          Manage your DarkStore settings and configurations
+        </p>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <DashboardButton
-          icon={<UserIcon className="w-6 h-6" />}
+          icon={<UserIcon className="w-8 h-8" />}
           title="My Details"
           onClick={() => setActiveSection("details")}
           active={activeSection === "details"}
           gradient="from-blue-500 to-cyan-500"
         />
         <DashboardButton
-          icon={<AppWindowIcon className="w-6 h-6" />}
-          title="My Applications"
-          onClick={() => setActiveSection("applications")}
-          active={activeSection === "applications"}
-          gradient="from-purple-500 to-pink-500"
-        />
-        <DashboardButton
-          icon={<WarehouseIcon className="w-6 h-6" />}
-          title="My Warehouses"
+          icon={<WarehouseIcon className="w-8 h-8" />}
+          title="New Warehouses"
           onClick={() => setActiveSection("warehouses")}
           active={activeSection === "warehouses"}
           gradient="from-orange-500 to-red-500"
@@ -94,15 +94,15 @@ interface DashboardButtonProps {
 const DashboardButton = ({ icon, title, onClick, active, gradient }: DashboardButtonProps) => (
   <button
     onClick={onClick}
-    className={`relative p-6 rounded-xl transition-all duration-300 ${
+    className={`relative p-8 rounded-xl transition-all duration-300 ${
       active ? 'scale-105' : 'hover:scale-105'
-    } bg-card border border-border`}
+    } bg-card border border-border min-h-[200px]`}
   >
-    <div className="relative z-10 flex flex-col items-center space-y-4">
-      <div className={`p-3 rounded-full bg-gradient-to-r ${gradient}`}>
+    <div className="relative z-10 flex flex-col items-center space-y-6">
+      <div className={`p-4 rounded-full bg-gradient-to-r ${gradient}`}>
         {icon}
       </div>
-      <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+      <h2 className="text-xl font-semibold text-foreground">{title}</h2>
     </div>
   </button>
 )

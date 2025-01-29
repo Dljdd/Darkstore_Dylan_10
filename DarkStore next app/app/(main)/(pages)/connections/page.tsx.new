@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Search, Send, Phone } from 'lucide-react';
+import { Search, Send, Phone, VideoCamera } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -27,28 +27,11 @@ interface Conversation {
 const initialConversations: Conversation[] = [
   {
     id: '1',
-    executiveName: 'Rahul Verma',
-    role: 'DarkStore Owner - Zepto',
-    avatar: '/avatars/rahul.jpg',
-    lastMessage: 'Hey I have the items you were looking for but they only have a shelf life of 3 days remaining',
-    unread: 1,
-    messages: [
-      {
-        id: '1',
-        content: 'Hey I have the items you were looking for but they only have a shelf life of 3 days remaining, let me know if you are interested',
-        sender: 'Rahul Verma',
-        timestamp: '11:45 AM',
-        isExecutive: true
-      }
-    ]
-  },
-  {
-    id: '2',
     executiveName: 'Suresh Kumar',
-    role: 'DarkStore Executive - Swiggy',
+    role: 'Chief Operations Officer',
     avatar: '/avatars/sarah.jpg',
-    lastMessage: 'Yes, we are very excited to work in the location.',
-    unread: 0,
+    lastMessage: 'Looking forward to discussing the new warehouse expansion.',
+    unread: 2,
     messages: [
       {
         id: '1',
@@ -59,7 +42,7 @@ const initialConversations: Conversation[] = [
       },
       {
         id: '2',
-        content: 'Yes, we are very excited to work in the location.',
+        content: 'Yes, we are very interested in the location.',
         sender: 'You',
         timestamp: '9:35 AM',
         isExecutive: false
@@ -67,62 +50,19 @@ const initialConversations: Conversation[] = [
     ]
   },
   {
-    id: '3',
+    id: '2',
     executiveName: 'Manjeet Singh',
-    role: 'Head of DarkStore - Blinkit',
+    role: 'Head of Partnerships',
     avatar: '/avatars/michael.jpg',
-    lastMessage: 'Hello! I saw your interest in discussing integration requirements.',
+    lastMessage: 'Lets schedule a call to discuss integration requirements.',
     unread: 0,
-    messages: [
-      {
-        id: '1',
-        content: 'Hello! I saw your interest in discussing integration requirements.',
-        sender: 'Manjeet Singh',
-        timestamp: '10:15 AM',
-        isExecutive: true
-      }
-    ]
+    messages: []
   }
 ];
 
-const instantReplies: { [key: string]: string[] } = {
-  '1': [
-    "Thanks for reaching out about the warehouse expansion.",
-    "I'll review the details and get back to you soon.",
-    "Interesting proposal. Let's discuss the specifics.",
-    "Can you send over the preliminary documentation?",
-    "The location looks promising. I'll get back to you."
-  ],
-  '2': [
-    "Great, let's schedule that integration call.",
-    "I'm excited to explore our collaboration opportunities.",
-    "Can you share more details about the integration requirements?",
-    "Our team is looking forward to working together.",
-    "What specific challenges are you hoping to address?"
-  ],
-  '3': [
-    "The items are on their way to you. Let me know if you have any other questions.",
-    "Let me get back to you in a few minutes."
-  ]
-};
-
-const getRandomReply = (conversationId: string, selectedConversation: Conversation | null): Message | null => {
-  const replies = instantReplies[conversationId];
-  if (!replies || replies.length === 0) return null;
-
-  const randomIndex = Math.floor(Math.random() * replies.length);
-  return {
-    id: Date.now().toString() + '_reply',
-    content: replies[randomIndex],
-    sender: selectedConversation?.executiveName || 'Executive',
-    timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    isExecutive: true
-  };
-};
-
 const Messages = () => {
   const [conversations, setConversations] = useState<Conversation[]>(initialConversations);
-  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(initialConversations[0]);
+  const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [newMessage, setNewMessage] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -146,40 +86,13 @@ const Messages = () => {
       isExecutive: false
     };
 
-    const updatedConversation = {
-      ...selectedConversation,
-      messages: [...selectedConversation.messages, newMsg],
-      lastMessage: newMessage
-    };
-
-    setConversations(prev => 
-      prev.map(conv => 
-        conv.id === selectedConversation.id ? updatedConversation : conv
-      )
-    );
-
-    setSelectedConversation(updatedConversation);
+    setConversations(prev => prev.map(conv => 
+      conv.id === selectedConversation.id
+        ? { ...conv, messages: [...conv.messages, newMsg], lastMessage: newMessage }
+        : conv
+    ));
 
     setNewMessage('');
-
-    setTimeout(() => {
-      const reply = getRandomReply(selectedConversation.id, selectedConversation);
-      if (reply) {
-        const updatedConversationWithReply = {
-          ...selectedConversation,
-          messages: [...updatedConversation.messages, reply],
-          lastMessage: reply.content
-        };
-
-        setConversations(prev => 
-          prev.map(conv => 
-            conv.id === selectedConversation.id ? updatedConversationWithReply : conv
-          )
-        );
-
-        setSelectedConversation(updatedConversationWithReply);
-      }
-    }, 500 + Math.random() * 1500); // Random delay between 500-2000ms to simulate typing
   };
 
   const filteredConversations = conversations.filter(conv =>
@@ -188,7 +101,8 @@ const Messages = () => {
   );
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] overflow-hidden bg-background mt-20">      {/* Conversations List */}
+    <div className="flex h-[calc(100vh-4rem)] overflow-hidden bg-background">
+      {/* Conversations List */}
       <div className="w-1/3 border-r flex flex-col">
         <div className="p-4 border-b sticky top-0 bg-background space-y-4">
           <h2 className="text-2xl font-semibold">Messages</h2>
@@ -255,6 +169,9 @@ const Messages = () => {
               <div className="flex gap-2">
                 <Button variant="ghost" size="icon">
                   <Phone className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon">
+                  <VideoCamera className="h-5 w-5" />
                 </Button>
               </div>
             </div>

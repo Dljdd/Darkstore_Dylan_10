@@ -43,8 +43,8 @@ const InfoBar = (props: Props) => {
           <Image
             src="/logo1.png"
             alt="Company Logo"
-            width={210}
-            height={40}
+            width={350}
+            height={350}
           />
         </a>
       </div>
@@ -54,7 +54,7 @@ const InfoBar = (props: Props) => {
           variant="ghost"
           size="icon"
           onClick={handleLogout}
-          className="text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
+          className="text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors rounded-none"
         >
           <LogOut className="h-5 w-5" />
         </Button>

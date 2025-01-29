@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useRef } from 'react'
-import { useScroll, useTransform, motion } from 'framer-motion'
+import { useScroll, motion } from 'framer-motion'
 import Image from 'next/image'
 
 export const ContainerScroll = ({
@@ -26,72 +26,54 @@ export const ContainerScroll = ({
     }
   }, [])
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [15, 0])
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100])
-
   return (
     <div
-      className="h-[80rem] flex items-center justify-center relative p-20"
+      className="w-full flex flex-col items-center justify-start relative px-4 pb-8 md:px-20"
       ref={containerRef}
     >
-      <div
-        className="py-40 w-full relative"
-        style={{
-          perspective: '1000px',
-        }}
-      >
-        <Header
-          translate={translate}
-          titleComponent={titleComponent}
-        />
-        <Card
-          rotate={rotate}
-          translate={translate}
-          scale={1}
-        />
+      <div className="w-full max-w-7xl mx-auto">
+        <Header titleComponent={titleComponent} />
+        <div className="mt-8 md:mt-12">
+          <Card scale={1} />
+        </div>
       </div>
     </div>
   )
 }
 
-export const Header = ({ translate, titleComponent }: any) => {
+export const Header = ({ titleComponent }: any) => {
   return (
-    <motion.div
-      style={{
-        translateY: translate,
-      }}
-      className="div max-w-5xl mx-auto text-center"
-    >
+    <motion.div className="w-full text-center mb-12">
       {titleComponent}
     </motion.div>
   )
 }
 
 export const Card = ({
-  rotate,
   scale,
 }: {
-  rotate: any
   scale: any
-  translate: any
 }) => {
   return (
     <motion.div
       style={{
-        rotateX: rotate,
         scale: 1,
         boxShadow:
           '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003',
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+      className="w-full aspect-[16/9] bg-[#222222] rounded-[30px] shadow-2xl overflow-hidden"
     >
-      <div className="bg-gray-100 h-full w-full rounded-2xl  gap-4 overflow-hidden p-4 transition-all ">
-        <Image
-          src="/hm.png"
-          fill
-          alt="bannerImage"
-          className="object-cover border-8 rounded-2xl"
-        />
+      <div className="h-full w-full p-6">
+        <div className="bg-gray-100 h-full w-full rounded-2xl overflow-hidden relative">
+          <Image
+            src="/hm2.png"
+            fill
+            alt="bannerImage"
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, 1200px"
+            priority
+          />
+        </div>
       </div>
     </motion.div>
   )
