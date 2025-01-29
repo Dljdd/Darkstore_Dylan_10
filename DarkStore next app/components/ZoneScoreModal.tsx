@@ -133,14 +133,6 @@ export default function ZoneScoreModal({
                 value={formatYears(zoneScore.paybackPeriod)} 
               />
             </div>
-
-            <button
-              onClick={onCalculate}
-              className="w-full py-3 px-4 bg-zinc-800 text-white rounded-md
-                       hover:bg-zinc-700 transition-colors text-lg"
-            >
-              Recalculate
-            </button>
           </div>
         ) : (
           <div className="text-center py-8">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import MapboxExample from './MapboxExample';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import logo from './logo.jpeg'; // Update with the actual path to your logo
+import logo from './logo1.png'; // Update with the actual path to your logo
 import blacklogo from './plainlogo_blackbg.png';
 
 const App = () => {

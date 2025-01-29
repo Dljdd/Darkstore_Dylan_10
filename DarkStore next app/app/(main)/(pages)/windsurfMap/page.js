@@ -91,7 +91,7 @@ export default function WindsurfMap() {
       }
 
       const data = await response.json();
-      setZoneScore(data.score);
+      setZoneScore(data); 
     } catch (err) {
       setError(err.message || 'Failed to calculate zone score');
       setZoneScore(null);
@@ -214,7 +214,7 @@ export default function WindsurfMap() {
         style={listContainerStyle} 
         className="bg-background border-l border-border"
       >
-        <h2 className="text-xl font-semibold mb-4 text-foreground">Locations</h2>
+        <h2 className="text-xl font-semibold mb-4 text-foreground">Existing Locations</h2>
         <div className="space-y-4">
           {locations.map((location, index) => (
             <div 

@@ -41,7 +41,7 @@ const InfoBar = (props: Props) => {
       <div className="absolute left-1/2 transform -translate-x-1/2">
         <a href="/">
           <Image
-            src="/logo.jpeg"
+            src="/logo1.png"
             alt="Company Logo"
             width={210}
             height={40}
