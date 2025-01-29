@@ -18,10 +18,8 @@ logging.basicConfig(filename='api_debug.log', level=logging.DEBUG,
 logger = logging.getLogger(__name__)
 
 # Import notification router
-from .notification_endpoints import router as notification_router
 
 router = APIRouter()
-router.include_router(notification_router, tags=["notifications"])
 
 # Load locations from GeoJSON file
 with open('locations.geojson', 'r') as f:
