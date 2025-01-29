@@ -32,7 +32,7 @@ const MenuOptions = (props: Props) => {
                   <Link
                     href={menuItem.href}
                     className={clsx(
-                      "p-3 rounded-lg transition-colors flex items-center justify-center",
+                      "p-3 transition-colors flex items-center justify-center",
                       isActive
                         ? "bg-primary text-primary-foreground"
                         : "hover:bg-accent text-muted-foreground hover:text-accent-foreground"

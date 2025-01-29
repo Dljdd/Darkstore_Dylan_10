@@ -4,11 +4,13 @@ import React, { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 interface LowStockItem {
@@ -26,6 +28,7 @@ declare global {
 
 export default function LowStockCard() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [lowStockItems, setLowStockItems] = useState<LowStockItem[]>([
     { id: 1, name: 'Product A', quantity: 5, price: 500 },
     { id: 2, name: 'Product B', quantity: 3, price: 1000 },
@@ -36,7 +39,8 @@ export default function LowStockCard() {
     setIsDialogOpen(true);
   };
 
-  const handleRestock = async (item: LowStockItem) => {
+  const handleRestock = async (item: LowStockItem, e: React.MouseEvent) => {
+    e.stopPropagation();
     try {
       const response = await fetch('/api/razorpay/create-order', {
         method: 'POST',
@@ -115,6 +119,14 @@ export default function LowStockCard() {
     }
   };
 
+  const handleRequestFromOtherStores = (item: LowStockItem, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsNotificationOpen(true);
+    setTimeout(() => {
+      setIsNotificationOpen(false);
+    }, 3000);
+  };
+
   return (
     <Card
       className="p-4 border-none bg-[#1B1B1B] cursor-pointer hover:opacity-70 transition"
@@ -136,7 +148,7 @@ export default function LowStockCard() {
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
-          <DialogHeader>
+          <DialogHeader className="flex flex-row items-center justify-between">
             <DialogTitle>Low Stock Items</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
@@ -154,15 +166,34 @@ export default function LowStockCard() {
                     Price: ₹{item.price}
                   </p>
                 </div>
-                <Button
-                  variant="outline"
-                  onClick={() => handleRestock(item)}
-                >
-                  Restock
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={(e) => handleRestock(item, e)}
+                  >
+                    Restock
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={(e) => handleRequestFromOtherStores(item, e)}
+                  >
+                    Request from Stores
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isNotificationOpen} onOpenChange={setIsNotificationOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader className="flex flex-row items-center justify-between">
+            <DialogTitle>Request Sent Successfully</DialogTitle>
+          </DialogHeader>
+          <p className="text-center text-muted-foreground">
+            Message sent, please keep an eye on your inbox
+          </p>
         </DialogContent>
       </Dialog>
     </Card>

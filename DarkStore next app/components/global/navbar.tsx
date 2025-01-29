@@ -5,18 +5,23 @@ import React from 'react'
 import { MenuIcon, LogOut } from 'lucide-react'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { Button } from "@/components/ui/button"
+import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
   const { user } = useUser();
-
+  const pathname = usePathname();
+  
+  const isMainPage = pathname !== '/' ;
+  console.log(isMainPage);
+  const logoSize : number = isMainPage ? 370 : 250;
   return (
-    <header className="fixed right-0 left-0 top-0 py-4 px-4 bg-black/40 backdrop-blur-lg z-[100] flex items-center justify-between border-b-[1px] border-neutral-900">
+    <header className={`fixed right-0 left-0 top-0 ${isMainPage ? 'py-4' : 'py-2'} px-4 bg-black/40 backdrop-blur-lg z-[100] flex items-center justify-between border-b-[1px] border-neutral-900`}>
       <aside className="flex items-center gap-[2px] mx-auto">
         <Image
           src="/logo1.png"
-          width={270}
-          height={270}
-          alt="saasify logo"
+          width={logoSize}
+          height={logoSize}
+          alt="darkstore logo"
           className="shadow-sm"
         />
       </aside>

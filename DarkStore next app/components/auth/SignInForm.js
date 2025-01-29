@@ -5,7 +5,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Mail, Lock } from 'lucide-react';
+import { Mail, Lock, Loader2, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function SignInForm() {
   const router = useRouter();
@@ -74,19 +75,31 @@ export default function SignInForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black/95 p-4">
-      <div className="w-full max-w-md space-y-8 bg-black border border-neutral-800 p-8 rounded-lg">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-white">
-            Sign in to DarkStore
+      <div className="w-full max-w-sm space-y-8 bg-black border border-neutral-800 p-8">
+        <div className="text-center space-y-6">
+          <Image
+            src="/logo1.png"
+            alt="DarkStore Logo"
+            width={150}
+            height={150}
+            className="mx-auto"
+          />
+          <h2 className="text-4xl font-bold text-white bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            Welcome Back
           </h2>
+          <p className="text-neutral-400">
+            Sign in to continue to your dashboard
+          </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <form className="mt-12 space-y-8" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-900/50 border border-red-800 text-red-200 px-4 py-3 rounded-lg" role="alert">
+            <div className="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3" role="alert">
               <span className="block sm:inline">{error}</span>
             </div>
           )}
-          <div className="rounded-md space-y-4">
+          
+          <div className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-neutral-300">
                 Email address
@@ -98,13 +111,14 @@ export default function SignInForm() {
                   name="email"
                   type="email"
                   required
-                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 py-3"
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleChange}
                 />
               </div>
             </div>
+
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium text-neutral-300">
                 Password
@@ -116,7 +130,7 @@ export default function SignInForm() {
                   name="password"
                   type="password"
                   required
-                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 py-3"
                   placeholder="Enter your password"
                   value={formData.password}
                   onChange={handleChange}
@@ -125,23 +139,34 @@ export default function SignInForm() {
             </div>
           </div>
 
-          <div>
+          <div className="space-y-6">
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-300 py-2 px-4 rounded-lg flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white transition-all duration-300 py-3 flex items-center justify-center gap-2 font-medium"
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  Signing in...
+                </>
+              ) : (
+                <>
+                  Sign in
+                  <ArrowRight className="h-5 w-5" />
+                </>
+              )}
             </button>
-          </div>
 
-          <div className="text-center">
-            <Link 
-              href="/signup" 
-              className="auth-link text-blue-400 hover:text-blue-300 text-sm transition-colors duration-300"
-            >
-              Don't have an account? Sign up
-            </Link>
+            <div className="text-center">
+              <Link 
+                href="/signup" 
+                className="text-neutral-400 hover:text-white transition-colors duration-300 text-sm flex items-center justify-center gap-2"
+              >
+                Don't have an account? 
+                <span className="text-blue-500 hover:text-blue-400">Sign up</span>
+              </Link>
+            </div>
           </div>
         </form>
       </div>
