@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import ZoneScoreModal from '@/components/ZoneScoreModal';
 
 const mapContainerStyle = {
   position: 'fixed',
@@ -60,6 +61,52 @@ export default function WindsurfMap() {
   const map = useRef(null);
   const [mapboxgl, setMapboxgl] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [selectedCoordinates, setSelectedCoordinates] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [zoneScore, setZoneScore] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Function to calculate zone score
+  const calculateZoneScore = async () => {
+    if (!selectedCoordinates) return;
+    
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/calculate-zone-score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          latitude: selectedCoordinates[1],
+          longitude: selectedCoordinates[0],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to calculate zone score');
+      }
+
+      const data = await response.json();
+      setZoneScore(data.score);
+    } catch (err) {
+      setError(err.message || 'Failed to calculate zone score');
+      setZoneScore(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleMapClick = (e) => {
+    const coordinates = e.lngLat;
+    setSelectedCoordinates([coordinates.lng, coordinates.lat]);
+    setZoneScore(null);
+    setError(null);
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     import('mapbox-gl').then((mapboxModule) => {
@@ -140,6 +187,18 @@ export default function WindsurfMap() {
       }
     });
 
+    // Add click handler for zone score calculation
+    map.current.on('click', (e) => {
+      // Don't trigger if clicking on a dark store point
+      const features = map.current.queryRenderedFeatures(e.point, {
+        layers: ['dark-stores-points']
+      });
+      
+      if (features.length === 0) {
+        handleMapClick(e);
+      }
+    });
+
     // Clean up on unmount
     return () => {
       if (map.current) {
@@ -187,6 +246,15 @@ export default function WindsurfMap() {
         </div>
       </div>
 
+      <ZoneScoreModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        coordinates={selectedCoordinates}
+        zoneScore={zoneScore}
+        isLoading={isLoading}
+        error={error}
+        onCalculate={calculateZoneScore}
+      />
     </div>
   );
 }

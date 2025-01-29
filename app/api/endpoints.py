@@ -275,24 +275,28 @@ def estimate_operational_cost(region: str) -> float:
     return base_cost * region_factor.get(region.split(',')[0].strip(), 1.0)
 
 def perform_cost_benefit_analysis(lat: float, lon: float, population_density: Dict[str, float], existing_stores: gpd.GeoDataFrame, demand_data: Dict[str, float], regions_gdf: gpd.GeoDataFrame) -> Dict[str, Any]:
-    region = find_region(lat, lon, regions_gdf)
+    # Calculate the store score
     score = calculate_store_score(lat, lon, population_density, existing_stores, demand_data, regions_gdf)
     
+    # Find the region
+    region = find_region(lat, lon, regions_gdf)
+    
+    # Calculate financial metrics
     setup_cost = estimate_setup_cost(region)
     annual_revenue = estimate_revenue(score, region)
     annual_operational_cost = estimate_operational_cost(region)
-    
     net_annual_profit = annual_revenue - annual_operational_cost
     payback_period = setup_cost / net_annual_profit if net_annual_profit > 0 else float('inf')
     
+    # Return with camelCase keys to match frontend
     return {
-        'score': score,
-        'region': region,
-        'setup_cost': setup_cost,
-        'annual_revenue': annual_revenue,
-        'annual_operational_cost': annual_operational_cost,
-        'net_annual_profit': net_annual_profit,
-        'payback_period': payback_period
+        "zoneScore": float(score),
+        "region": str(region),
+        "setupCost": float(setup_cost),
+        "annualRevenue": float(annual_revenue),
+        "operationalCost": float(annual_operational_cost),
+        "netProfit": float(net_annual_profit),
+        "paybackPeriod": float(payback_period)
     }
 
 class CostBenefitRequest(BaseModel):
@@ -322,5 +326,3 @@ async def get_cost_benefit_analysis(request: CostBenefitRequest):
 class Coordinates(BaseModel):
     latitude: float
     longitude: float
-
-
