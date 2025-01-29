@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Package, Users, ShoppingCart, Activity, Download, Bell, FileText, BarChart2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, AreaChart, Area } from 'recharts'
+import LowStockCard from "@/components/inventory/LowStockCard"
 
 interface RecentProduct {
   name: string
@@ -252,16 +253,7 @@ export default function InventoryPage() {
               </div>
             </Card>
 
-            <Card className="bg-black/95 border border-neutral-800 p-6">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-sm text-neutral-400">Low Stock Items</p>
-                  <h2 className="text-2xl font-bold mt-2">+12,234</h2>
-                  <p className="text-sm text-red-400 mt-1">+19% from last month</p>
-                </div>
-                <Activity className="h-5 w-5 text-neutral-400" />
-              </div>
-            </Card>
+            <LowStockCard />
 
             <Card className="bg-black/95 border border-neutral-800 p-6">
               <div className="flex justify-between items-start">
