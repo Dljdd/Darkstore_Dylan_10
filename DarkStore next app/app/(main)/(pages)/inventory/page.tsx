@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Package, Users, ShoppingCart, Activity, Download, Bell, FileText, BarChart2 } from "lucide-react"
@@ -89,7 +89,7 @@ const analyticsData = [
 ];
 
 // Reports data
-const reportsData = [
+const initialReportsData = [
   { id: 1, name: 'Monthly Inventory Summary', date: '2024-01-29', status: 'Generated' },
   { id: 2, name: 'Stock Movement Analysis', date: '2024-01-28', status: 'Pending' },
   { id: 3, name: 'Low Stock Alert Report', date: '2024-01-27', status: 'Generated' },
@@ -97,7 +97,7 @@ const reportsData = [
 ];
 
 // Notifications data
-const notificationsData = [
+const initialNotificationsData = [
   { id: 1, message: 'Product A is running low on stock', type: 'warning', time: '2 hours ago' },
   { id: 2, message: 'New shipment arrived for Product B', type: 'success', time: '4 hours ago' },
   { id: 3, message: 'Product C is out of stock', type: 'error', time: '1 day ago' },
@@ -105,6 +105,109 @@ const notificationsData = [
 ];
 
 export default function InventoryPage() {
+  // State management
+  const [reports, setReports] = useState(initialReportsData);
+  const [notifications, setNotifications] = useState(initialNotificationsData);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  // Analytics Export Handler
+  const handleExportAnalytics = async () => {
+    try {
+      const csvContent = analyticsData.map(row => 
+        Object.values(row).join(',')
+      ).join('\n');
+      
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'inventory_analytics.csv';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error exporting analytics:', error);
+    }
+  };
+
+  // Report Generation Handler
+  const handleGenerateReport = async () => {
+    setIsGenerating(true);
+    try {
+      // Simulate report generation
+      const newReport = {
+        id: Date.now(),
+        name: 'New Inventory Report',
+        date: new Date().toISOString().split('T')[0],
+        status: 'Pending'
+      };
+      
+      setReports(prev => [newReport, ...prev]);
+
+      // Simulate processing time
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Update report status to Generated
+      setReports(prev => prev.map(report => 
+        report.id === newReport.id ? { ...report, status: 'Generated' } : report
+      ));
+
+      // Add notification for generated report
+      const notification = {
+        id: Date.now(),
+        message: `Report "${newReport.name}" has been generated`,
+        type: 'success',
+        time: 'Just now'
+      };
+      setNotifications(prev => [notification, ...prev]);
+    } catch (error) {
+      console.error('Error generating report:', error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  // Report Download Handler
+  const handleDownloadReport = async (reportId: number) => {
+    try {
+      const report = reports.find(r => r.id === reportId);
+      if (!report || report.status !== 'Generated') return;
+
+      // Create a sample report content (replace with actual report data)
+      const reportContent = `
+        Inventory Report
+        Name: ${report.name}
+        Date: ${report.date}
+        Generated: ${new Date().toISOString()}
+        
+        This is a sample report content.
+        Replace with actual report data.
+      `;
+
+      const blob = new Blob([reportContent], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${report.name.toLowerCase().replace(/\s+/g, '_')}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error downloading report:', error);
+    }
+  };
+
+  // Notification Handlers
+  const handleDismissNotification = (notificationId: number) => {
+    setNotifications(prev => prev.filter(n => n.id !== notificationId));
+  };
+
+  const handleMarkAllAsRead = () => {
+    setNotifications([]);
+  };
+
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">
@@ -271,7 +374,7 @@ export default function InventoryPage() {
             <Card className="bg-black/95 border border-neutral-800 p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Analytics Overview</h3>
-                <Button variant="outline" size="sm" className="gap-2">
+                <Button variant="outline" size="sm" className="gap-2" onClick={handleExportAnalytics}>
                   <Download className="h-4 w-4" />
                   Export Data
                 </Button>
@@ -304,13 +407,19 @@ export default function InventoryPage() {
           <Card className="bg-black/95 border border-neutral-800 p-6">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold">Reports</h3>
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="gap-2" 
+                onClick={handleGenerateReport}
+                disabled={isGenerating}
+              >
                 <FileText className="h-4 w-4" />
-                Generate Report
+                {isGenerating ? 'Generating...' : 'Generate Report'}
               </Button>
             </div>
             <div className="space-y-4">
-              {reportsData.map((report) => (
+              {reports.map((report) => (
                 <div key={report.id} className="flex items-center justify-between p-4 rounded-lg border border-neutral-800">
                   <div className="flex items-center gap-4">
                     <div className="p-2 rounded-full bg-neutral-800">
@@ -321,7 +430,12 @@ export default function InventoryPage() {
                       <p className="text-sm text-neutral-400">{report.date}</p>
                     </div>
                   </div>
-                  <Button variant="outline" size="sm">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => report.status === 'Generated' ? handleDownloadReport(report.id) : null}
+                    disabled={report.status !== 'Generated'}
+                  >
                     {report.status === 'Generated' ? 'Download' : 'Pending'}
                   </Button>
                 </div>
@@ -334,13 +448,13 @@ export default function InventoryPage() {
           <Card className="bg-black/95 border border-neutral-800 p-6">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold">Notifications</h3>
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button variant="outline" size="sm" className="gap-2" onClick={handleMarkAllAsRead}>
                 <Bell className="h-4 w-4" />
                 Mark All as Read
               </Button>
             </div>
             <div className="space-y-4">
-              {notificationsData.map((notification) => (
+              {notifications.map((notification) => (
                 <div key={notification.id} className="flex items-center justify-between p-4 rounded-lg border border-neutral-800">
                   <div className="flex items-center gap-4">
                     <div className={`p-2 rounded-full ${
@@ -356,7 +470,11 @@ export default function InventoryPage() {
                       <p className="text-sm text-neutral-400">{notification.time}</p>
                     </div>
                   </div>
-                  <Button variant="ghost" size="sm">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => handleDismissNotification(notification.id)}
+                  >
                     Dismiss
                   </Button>
                 </div>
