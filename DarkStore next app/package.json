@@ -37,12 +37,14 @@
     "mapbox-gl": "^3.9.4",
     "next": "^14.2.13",
     "next-themes": "^0.3.0",
+    "node-fetch": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "recharts": "^2.15.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "twilio": "^5.4.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
