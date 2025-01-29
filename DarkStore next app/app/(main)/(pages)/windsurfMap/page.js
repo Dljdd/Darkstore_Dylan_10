@@ -27,17 +27,53 @@ const listContainerStyle = {
 
 };
 
+const tooltipStyle = {
+  position: 'absolute',
+  top: '20px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  color: 'white',
+  padding: '8px 16px',
+  borderRadius: '8px',
+  zIndex: 2,
+  fontSize: '14px',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+};
+
 // Function to create popup HTML content
-const createPopupHTML = (properties) => {
+const createPopupHTML = (properties, coordinates) => {
   const { name, region, storageSpace, company } = properties;
+  const locationName = name || region;
   return `
     <div style="color: black; padding: 10px;" class="store-popup">
-      <h3 style="margin: 0 0 10px 0; font-weight: bold;">${name || region}</h3>
+      <h3 style="margin: 0 0 10px 0; font-weight: bold;">${locationName}</h3>
       <div class="store-details">
         <p style="margin: 5px 0;"><strong>Location:</strong> ${region}</p>
         ${storageSpace ? `<p style="margin: 5px 0;"><strong>Storage Space:</strong> ${storageSpace}</p>` : ''}
         ${company ? `<p style="margin: 5px 0;"><strong>Company:</strong> ${company}</p>` : ''}
       </div>
+      <button 
+        class="calculate-zone-score-btn"
+        data-lat="${coordinates[1]}"
+        data-lng="${coordinates[0]}"
+        data-location="${locationName}"
+        style="
+          background-color: #1a1a1a;
+          color: white;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 4px;
+          margin-top: 10px;
+          cursor: pointer;
+          width: 100%;
+          transition: background-color 0.2s;
+        "
+        onmouseover="this.style.backgroundColor='#333'"
+        onmouseout="this.style.backgroundColor='#1a1a1a'"
+      >
+        Calculate Zone Score
+      </button>
     </div>
   `;
 };
@@ -61,11 +97,53 @@ export default function WindsurfMap() {
   const map = useRef(null);
   const [mapboxgl, setMapboxgl] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [locationScores, setLocationScores] = useState({});
   const [selectedCoordinates, setSelectedCoordinates] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [zoneScore, setZoneScore] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showTip, setShowTip] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  // Function to calculate zone score for a specific location
+  const calculateLocationScore = async (location) => {
+    try {
+      const response = await fetch('/api/calculate-zone-score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          latitude: location.geometry.coordinates[1],
+          longitude: location.geometry.coordinates[0],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to calculate zone score');
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.error('Error calculating score for location:', err);
+      return null;
+    }
+  };
+
+  // Load zone scores for all locations
+  const loadLocationScores = async (locations) => {
+    const scores = {};
+    for (const location of locations) {
+      const score = await calculateLocationScore(location);
+      if (score) {
+        scores[location.properties.name || location.properties.region] = score;
+      }
+    }
+    setLocationScores(scores);
+  };
 
   // Function to calculate zone score
   const calculateZoneScore = async () => {
@@ -91,7 +169,8 @@ export default function WindsurfMap() {
       }
 
       const data = await response.json();
-      setZoneScore(data.score);
+      setZoneScore(data);
+      setIsModalOpen(true);
     } catch (err) {
       setError(err.message || 'Failed to calculate zone score');
       setZoneScore(null);
@@ -112,6 +191,27 @@ export default function WindsurfMap() {
     import('mapbox-gl').then((mapboxModule) => {
       setMapboxgl(mapboxModule.default);
     });
+
+    // Add click event listener to handle popup button clicks
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('calculate-zone-score-btn')) {
+        const lat = parseFloat(e.target.getAttribute('data-lat'));
+        const lng = parseFloat(e.target.getAttribute('data-lng'));
+        const locationName = e.target.getAttribute('data-location');
+        
+        setSelectedCoordinates([lng, lat]);
+        setSelectedLocation(locationName);
+        setZoneScore(null);
+        setError(null);
+        setIsModalOpen(true);
+        calculateZoneScore();
+      }
+    });
+
+    return () => {
+      // Cleanup the window object
+      delete window.calculateZoneScore;
+    };
   }, []);
 
   useEffect(() => {
@@ -121,7 +221,7 @@ export default function WindsurfMap() {
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/outdoors-v12',
+      style: 'mapbox://styles/mapbox/dark-v11',
       center: [72.8777, 19.0760], // Mumbai coordinates
       zoom: 10,
     });
@@ -154,10 +254,9 @@ export default function WindsurfMap() {
               'Blinkit', '#F9D923',
               'Zepto', '#4B56D2',
               'Swiggy', '#FF4B2B',
-              '#FF4B2B' // default color
+              '#FF4B2B'
             ],
-            'circle-stroke-width': 2,
-            'circle-stroke-color': '#fff'
+            'circle-opacity': 0.8
           }
         });
 
@@ -168,7 +267,7 @@ export default function WindsurfMap() {
 
           new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML(createPopupHTML(properties))
+            .setHTML(createPopupHTML(properties, coordinates))
             .addTo(map.current);
         });
 
@@ -181,6 +280,8 @@ export default function WindsurfMap() {
         });
 
         setLocations(geojsonData.features);
+        // Load zone scores for all locations
+        loadLocationScores(geojsonData.features);
 
       } catch (error) {
         console.error('Error loading GeoJSON:', error);
@@ -209,40 +310,57 @@ export default function WindsurfMap() {
 
   return (
     <div className="relative">
-      <div ref={mapContainer} style={mapContainerStyle} />
+      <div ref={mapContainer} style={mapContainerStyle}>
+        {showTip && (
+          <div style={tooltipStyle}>
+            <span>Tip: Click on any of the grey regions to check out their zone score</span>
+            <button
+              onClick={() => setShowTip(false)}
+              style={{
+                marginLeft: '12px',
+                background: 'none',
+                border: 'none',
+                color: 'white',
+                cursor: 'pointer',
+                padding: '0 4px',
+                fontSize: '16px'
+              }}
+            >
+              ×
+            </button>
+          </div>
+        )}
+      </div>
       <div 
         style={listContainerStyle} 
         className="bg-background border-l border-border"
       >
-        <h2 className="text-xl font-semibold mb-4 text-foreground">Locations</h2>
+        <h2 className="text-xl font-semibold mb-4 text-foreground">Existing Locations</h2>
         <div className="space-y-4">
-          {locations.map((location, index) => (
-            <div 
-              key={index}
-              className="p-4 border border-border rounded-lg 
-                       hover:bg-accent cursor-pointer
-                       bg-card text-card-foreground
-                       transition-colors duration-200"
-              onClick={() => {
-                map.current.flyTo({
-                  center: location.geometry.coordinates,
-                  zoom: 14
-                });
-              }}
-            >
-              <h3 className="font-medium text-foreground">
-                {location.properties.name || location.properties.region}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {location.properties.region}
-              </p>
-              {location.properties.storageSpace && (
-                <p className="text-sm text-muted-foreground">
-                  Storage: {location.properties.storageSpace}
-                </p>
-              )}
-            </div>
-          ))}
+          {locations.map((location, index) => {
+            const locationName = location.properties.name || location.properties.region;
+            
+            return (
+              <button 
+                key={index}
+                className="relative w-full p-4 rounded-lg bg-card hover:bg-accent/80 transition-colors cursor-pointer text-left group"
+                onClick={() => {
+                  map.current.flyTo({
+                    center: location.geometry.coordinates,
+                    zoom: 14,
+                    duration: 1500
+                  });
+                }}
+              >
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-medium text-foreground">{locationName}</h3>
+                    <p className="text-sm text-muted-foreground">{location.properties.region}</p>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
 

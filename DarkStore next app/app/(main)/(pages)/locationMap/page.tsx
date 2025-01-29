@@ -14,7 +14,7 @@ interface ZoneScoreData {
   netProfit: number;
   paybackPeriod: number;
 }
-
+ 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
