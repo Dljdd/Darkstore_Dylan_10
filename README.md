@@ -43,29 +43,13 @@
 This tech stack provides a robust foundation for DarkStore's development, ensuring scalability, performance, and seamless integration of AI-driven insights.
 
 
-## Installation
+## Demo Link
 
-To get started with DarkStore, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/darkstore.git
-   cd darkstore
-   ```
-2.	Install the dependencies:
-
-    ```bash
-    npm install
-    ```
-3.	Start the development server
-    ```bash
-  	npm run dev
-    ```
-4.	Open your browser and navigate to http://localhost:3000.
+https://drive.google.com/drive/folders/1xwRqzMj155RsHShdctf4TlUXOXwDMbxU?usp=sharing
 
 ## Usage
 
 	1.	Register your warehouse space by filling in the necessary details.
 	2.	Connect with rapid-delivery services to optimize your operations.
 	3.	Use the demand forecasting model to identify high-demand areas for your dark store.
-	4.	Analyze the “Demand Score” to make informed decisions about your business strategy.
+	4.	Analyze the "Zone Score” to make informed decisions about your business strategy.
