@@ -34,9 +34,9 @@ const DashboardPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground p-8">
       <div className="mb-12 pt-8 text-center">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-          Dashboard
-        </h1>
+        <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+          Welcome , Dhananjay
+        </h2>
         <p className="text-lg text-muted-foreground mt-2">
           Manage your DarkStore settings and configurations
         </p>
