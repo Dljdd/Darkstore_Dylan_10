@@ -87,23 +87,24 @@ const initialConversations: Conversation[] = [
 
 const instantReplies: { [key: string]: string[] } = {
   '1': [
+    "The items are on their way to you. Let me know if you have any other questions.",
+    "Let me get back to you in a few minutes."
+  ],
+  '2': [
     "Thanks for reaching out about the warehouse expansion.",
     "I'll review the details and get back to you soon.",
     "Interesting proposal. Let's discuss the specifics.",
     "Can you send over the preliminary documentation?",
     "The location looks promising. I'll get back to you."
   ],
-  '2': [
+  '3': [
     "Great, let's schedule that integration call.",
     "I'm excited to explore our collaboration opportunities.",
     "Can you share more details about the integration requirements?",
     "Our team is looking forward to working together.",
     "What specific challenges are you hoping to address?"
-  ],
-  '3': [
-    "The items are on their way to you. Let me know if you have any other questions.",
-    "Let me get back to you in a few minutes."
   ]
+  
 };
 
 const getRandomReply = (conversationId: string, selectedConversation: Conversation | null): Message | null => {

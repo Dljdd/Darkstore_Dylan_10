@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { getDatabase, ref, set } from 'firebase/database';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Mail, Lock, Building2, Phone } from 'lucide-react';
+import { Mail, Lock, Building2, Phone, Loader2, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -25,28 +25,9 @@ export default function SignUpForm() {
     setIsLoading(true);
 
     try {
-      // Create user with email and password
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-
-      // Get the user object
-      const user = userCredential.user;
-
-      // Add additional user data to Realtime Database
-      const db = getDatabase();
-      await set(ref(db, `users/${user.uid}`), {
-        email: formData.email,
-        businessName: formData.businessName,
-        phoneNumber: formData.phoneNumber,
-        role: 'user',
-        createdAt: new Date().toISOString()
-      });
-
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       // Set session cookie
-      const idToken = await user.getIdToken();
+      const idToken = await userCredential.user.getIdToken();
       await fetch('/api/auth/session', {
         method: 'POST',
         headers: {
@@ -54,7 +35,7 @@ export default function SignUpForm() {
         },
         body: JSON.stringify({ token: idToken }),
       });
-
+      
       // Redirect to dashboard
       window.location.href = '/dashboard';
     } catch (error) {
@@ -71,20 +52,19 @@ export default function SignUpForm() {
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
     if (error) setError('');
   };
 
   const getAuthErrorMessage = (errorCode) => {
     switch (errorCode) {
       case 'auth/email-already-in-use':
-        return 'An account with this email already exists.';
+        return 'This email is already registered.';
       case 'auth/invalid-email':
         return 'Invalid email address.';
       case 'auth/operation-not-allowed':
         return 'Email/password accounts are not enabled.';
       case 'auth/weak-password':
-        return 'Password is too weak. Please use at least 6 characters.';
+        return 'Password should be at least 6 characters.';
       default:
         return 'An error occurred during sign up. Please try again.';
     }
@@ -92,19 +72,30 @@ export default function SignUpForm() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black/95 p-4">
-      <div className="w-full max-w-md space-y-8 bg-black border border-neutral-800 p-8 rounded-lg">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-white">
-            Create your account
+      <div className="w-full max-w-sm space-y-8 bg-black border border-neutral-800 p-8">
+        <div className="text-center space-y-6">
+          <Image
+            src="/logo1.png"
+            alt="DarkStore Logo"
+            width={150}
+            height={150}
+            className="mx-auto"
+          />
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            Create Account
+          <br></br>
+          <br></br>
           </h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <form className="mt-12 space-y-8" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-900/50 border border-red-800 text-red-200 px-4 py-3 rounded-lg" role="alert">
+            <div className="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3" role="alert">
               <span className="block sm:inline">{error}</span>
             </div>
           )}
-          <div className="rounded-md space-y-4">
+          
+          <div className="space-y-6">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-neutral-300">
                 Email address
@@ -116,7 +107,7 @@ export default function SignUpForm() {
                   name="email"
                   type="email"
                   required
-                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 py-3"
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleChange}
@@ -135,7 +126,7 @@ export default function SignUpForm() {
                   name="password"
                   type="password"
                   required
-                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 py-3"
                   placeholder="Enter your password"
                   value={formData.password}
                   onChange={handleChange}
@@ -154,7 +145,7 @@ export default function SignUpForm() {
                   name="businessName"
                   type="text"
                   required
-                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 py-3"
                   placeholder="Enter your business name"
                   value={formData.businessName}
                   onChange={handleChange}
@@ -173,7 +164,7 @@ export default function SignUpForm() {
                   name="phoneNumber"
                   type="tel"
                   required
-                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all duration-300 py-2"
+                  className="pl-10 w-full bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 py-3"
                   placeholder="Enter your phone number"
                   value={formData.phoneNumber}
                   onChange={handleChange}
@@ -181,24 +172,36 @@ export default function SignUpForm() {
               </div>
             </div>
           </div>
-
-          <div>
+          <br></br>
+          <br></br>
+          <div className="space-y-2">
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-300 py-2 px-4 rounded-lg flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white transition-all duration-300 py-3 flex items-center justify-center gap-2 font-medium"
             >
-              {isLoading ? 'Creating account...' : 'Create account'}
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  Creating account...
+                </>
+              ) : (
+                <>
+                  Create account
+                  <ArrowRight className="h-5 w-5" />
+                </>
+              )}
             </button>
-          </div>
 
-          <div className="text-center">
-            <Link 
-              href="/signin" 
-              className="text-blue-400 hover:text-blue-300 text-sm transition-colors duration-300"
-            >
-              Already have an account? Sign in
-            </Link>
+            <div className="text-center">
+              <Link 
+                href="/signin" 
+                className="text-neutral-400 hover:text-white transition-colors duration-300 text-sm flex items-center justify-center gap-2"
+              >
+                Already have an account?
+                <span className="text-blue-500 hover:text-blue-400">Sign in</span>
+              </Link>
+            </div>
           </div>
         </form>
       </div>

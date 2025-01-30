@@ -87,11 +87,9 @@ export default function SignInForm() {
           <h2 className="text-4xl font-bold text-white bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
             Welcome Back
           </h2>
-          <p className="text-neutral-400">
-            Sign in to continue to your dashboard
-          </p>
         </div>
-
+        <br></br>
+        <br></br>
         <form className="mt-12 space-y-8" onSubmit={handleSubmit}>
           {error && (
             <div className="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3" role="alert">
@@ -138,7 +136,7 @@ export default function SignInForm() {
               </div>
             </div>
           </div>
-
+          <br></br><br></br>
           <div className="space-y-6">
             <button
               type="submit"
