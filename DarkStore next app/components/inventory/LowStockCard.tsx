@@ -70,6 +70,41 @@ export default function LowStockCard() {
         handler: function (response: any) {
           handlePaymentSuccess(response, item);
         },
+        modal: {
+          confirm_close: true,
+          animation: true,
+          backdropClose: false,
+          handleBack: true,
+          escape: true,
+          ondismiss: () => {
+            // Handle modal close
+          },
+          width: '320px',
+          height: '500px',
+        },
+        retry: {
+          enabled: true,
+          max_count: 3,
+        },
+        config: {
+          display: {
+            blocks: {
+              banks: {
+                name: 'Pay using Banking methods',
+                instruments: [
+                  { method: 'upi' },
+                  { method: 'card' },
+                  { method: 'netbanking' },
+                ],
+              },
+            },
+            sequence: ['block.banks'],
+            preferences: {
+              show_default_blocks: true,
+              show_refresh_button: true
+            }
+          },
+        },
         prefill: {
           name: 'Store Manager',
           email: 'manager@darkstore.com',
